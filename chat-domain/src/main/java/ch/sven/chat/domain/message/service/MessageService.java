@@ -1,7 +1,7 @@
 package ch.sven.chat.domain.message.service;
 
-import ch.sven.chat.domain.message.repository.MessageSearchQuery;
 import ch.sven.chat.domain.message.model.Message;
+import ch.sven.chat.domain.message.repository.MessageSearchQuery;
 
 import java.util.List;
 

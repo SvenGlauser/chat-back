@@ -1,7 +1,6 @@
 package ch.sven.chat.domain.message.repository;
 
 import ch.sven.chat.domain.exception.ExceptionTestUtils;
-import ch.sven.chat.domain.message.repository.MessageSearchQuery;
 import org.junit.jupiter.api.Test;
 
 class MessageSearchQueryTest {
