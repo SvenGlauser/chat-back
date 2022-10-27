@@ -23,7 +23,7 @@ public class MessageServiceImpl implements MessageService {
     private final MessageRepository messageRepository;
 
     @Override
-    public Message lire(long id) {
+    public Message lire(Long id) {
         Validation.of(this.getClass())
                 .notNull(id, FIELD_ID, ERROR_ID_OBLIGATOIRE)
                 .validate();
@@ -36,6 +36,8 @@ public class MessageServiceImpl implements MessageService {
         Validation.of(this.getClass())
                 .notNull(searchQuery, FIELD_SEARCH_QUERY, ERROR_SEARCH_QUERY_OBLIGATOIRE)
                 .validate();
+
+        searchQuery.valider();
 
         return messageRepository.rechercher(searchQuery);
     }
@@ -69,7 +71,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void supprimer(long id) {
+    public void supprimer(Long id) {
         Validation.of(this.getClass())
                 .notNull(id, FIELD_ID, ERROR_ID_OBLIGATOIRE)
                 .validate();

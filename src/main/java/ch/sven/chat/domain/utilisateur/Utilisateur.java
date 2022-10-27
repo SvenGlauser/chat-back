@@ -39,7 +39,7 @@ public class Utilisateur extends Model<Utilisateur> {
     public Utilisateur modifyFields(Utilisateur old) {
         this.nom = old.nom;
         this.prenom = old.prenom;
-        this.imageUrl = old.nom;
+        this.imageUrl = old.imageUrl;
         this.theme = old.theme;
         return this;
     }
