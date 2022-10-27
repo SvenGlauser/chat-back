@@ -1,7 +1,10 @@
-package ch.sven.chat.domain.message;
+package ch.sven.chat.domain.message.service;
 
 import ch.sven.chat.domain.exception.ExceptionTestUtils;
-import ch.sven.chat.domain.utilisateur.Utilisateur;
+import ch.sven.chat.domain.message.model.Message;
+import ch.sven.chat.domain.message.repository.MessageRepository;
+import ch.sven.chat.domain.message.repository.MessageSearchQuery;
+import ch.sven.chat.domain.utilisateur.model.Utilisateur;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

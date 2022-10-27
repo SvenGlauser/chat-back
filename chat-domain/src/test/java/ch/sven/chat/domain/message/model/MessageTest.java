@@ -1,7 +1,7 @@
-package ch.sven.chat.domain.message;
+package ch.sven.chat.domain.message.model;
 
 import ch.sven.chat.domain.exception.ExceptionTestUtils;
-import ch.sven.chat.domain.utilisateur.Utilisateur;
+import ch.sven.chat.domain.utilisateur.model.Utilisateur;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

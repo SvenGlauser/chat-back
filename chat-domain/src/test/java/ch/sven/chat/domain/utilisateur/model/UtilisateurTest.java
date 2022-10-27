@@ -1,6 +1,8 @@
-package ch.sven.chat.domain.utilisateur;
+package ch.sven.chat.domain.utilisateur.model;
 
 import ch.sven.chat.domain.exception.ExceptionTestUtils;
+import ch.sven.chat.domain.utilisateur.model.Theme;
+import ch.sven.chat.domain.utilisateur.model.Utilisateur;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

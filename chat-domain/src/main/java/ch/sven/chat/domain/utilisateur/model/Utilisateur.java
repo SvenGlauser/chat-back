@@ -1,4 +1,4 @@
-package ch.sven.chat.domain.utilisateur;
+package ch.sven.chat.domain.utilisateur.model;
 
 import ch.sven.chat.domain.common.Model;
 import ch.sven.chat.domain.validation.Validation;

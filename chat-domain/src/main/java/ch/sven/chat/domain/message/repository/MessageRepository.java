@@ -1,11 +1,13 @@
-package ch.sven.chat.domain.message;
+package ch.sven.chat.domain.message.repository;
+
+import ch.sven.chat.domain.message.model.Message;
 
 import java.util.List;
 
 /**
- * Service de gestion des messages
+ * Repository de gestion des messages
  */
-public interface MessageService {
+public interface MessageRepository {
     Message lire(Long id);
     List<Message> rechercher(MessageSearchQuery messageSearchQuery);
     Message envoyer(Message message);

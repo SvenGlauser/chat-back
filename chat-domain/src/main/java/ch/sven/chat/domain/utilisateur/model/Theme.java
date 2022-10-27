@@ -1,4 +1,4 @@
-package ch.sven.chat.domain.utilisateur;
+package ch.sven.chat.domain.utilisateur.model;
 
 /**
  * Le thème graphique de préférence de l'utilisateur

@@ -1,4 +1,4 @@
-package ch.sven.chat.domain.message;
+package ch.sven.chat.domain.message.repository;
 
 import ch.sven.chat.domain.common.SearchQuery;
 import ch.sven.chat.domain.validation.Validation;

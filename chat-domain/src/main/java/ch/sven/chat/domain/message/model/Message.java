@@ -1,7 +1,7 @@
-package ch.sven.chat.domain.message;
+package ch.sven.chat.domain.message.model;
 
 import ch.sven.chat.domain.common.Model;
-import ch.sven.chat.domain.utilisateur.Utilisateur;
+import ch.sven.chat.domain.utilisateur.model.Utilisateur;
 import ch.sven.chat.domain.validation.Validation;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
