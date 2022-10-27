@@ -5,5 +5,5 @@ package ch.sven.chat.domain.utilisateur;
  */
 public enum Theme {
     SOMBRE,
-    CLAIR;
+    CLAIR
 }

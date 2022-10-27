@@ -2,7 +2,7 @@ package ch.sven.chat.domain.validation;
 
 import ch.sven.chat.domain.exception.CoherenceException;
 import ch.sven.chat.domain.exception.ErrorField;
-import org.springframework.util.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;

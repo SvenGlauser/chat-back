@@ -2,6 +2,7 @@ package ch.sven.chat.domain.message;
 
 import ch.sven.chat.domain.exception.ExceptionTestUtils;
 import ch.sven.chat.domain.utilisateur.Utilisateur;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -58,7 +59,7 @@ class MessageServiceImplTest {
         Mockito.when(messageRepository.rechercher(Mockito.any(MessageSearchQuery.class))).thenReturn(List.of(message));
         List<Message> result = messageService.rechercher(messageSearchQuery);
 
-        assertThat(result).hasSizeGreaterThan(0);
+        Assertions.assertThat(result).hasSizeGreaterThan(0);
         assertThat(result.get(0)).isEqualTo(message);
 
         ExceptionTestUtils.assertCoherenceThrownErrorList(() -> messageService.rechercher(null), MessageServiceImpl.ERROR_SEARCH_QUERY_OBLIGATOIRE);
