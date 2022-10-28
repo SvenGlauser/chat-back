@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: Chat API
+
+  profiles:
+    active: @spring.profiles.active@
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
