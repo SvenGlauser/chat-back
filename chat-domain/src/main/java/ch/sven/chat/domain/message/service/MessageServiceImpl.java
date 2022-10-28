@@ -1,5 +1,6 @@
 package ch.sven.chat.domain.message.service;
 
+import ch.sven.chat.domain.common.Model;
 import ch.sven.chat.domain.exception.CoherenceException;
 import ch.sven.chat.domain.message.model.Message;
 import ch.sven.chat.domain.message.repository.MessageRepository;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Implémentation du service de gestion des messages
@@ -16,6 +18,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService {
     public static final String ERROR_ID_OBLIGATOIRE = "L'id du message est obligatoire";
+    public static final String ERROR_ID_DOIT_ETRE_NULL = "L'id du message doit être null";
     public static final String ERROR_MESSAGE_OBLIGATOIRE = "Le message est obligatoire";
     public static final String ERROR_MESSAGE_NON_TROUVE = "Le message à modifier n'a pas été trouvé";
     public static final String ERROR_SEARCH_QUERY_OBLIGATOIRE = "La search query est obligatoire";
@@ -49,9 +52,9 @@ public class MessageServiceImpl implements MessageService {
     public Message envoyer(Message message) {
         Validation.of(this.getClass())
                 .notNull(message, FIELD_MESSAGE, ERROR_MESSAGE_OBLIGATOIRE)
+                .isNull(Optional.ofNullable(message).map(Model::getId).orElse(null), FIELD_ID, ERROR_ID_DOIT_ETRE_NULL)
                 .validate();
 
-        message.setId(null);
         message.valider();
 
         return messageRepository.envoyer(message);
@@ -79,6 +82,6 @@ public class MessageServiceImpl implements MessageService {
                 .notNull(id, FIELD_ID, ERROR_ID_OBLIGATOIRE)
                 .validate();
 
-        messageRepository.lire(id);
+        messageRepository.supprimer(id);
     }
 }
