@@ -88,6 +88,9 @@ class MessageServiceImplTest {
         assertThat(result.getContenu()).isEqualTo("Mon contenu");
 
         ExceptionTestUtils.assertCoherenceThrownErrorList(() -> messageService.envoyer(null), MessageServiceImpl.ERROR_MESSAGE_OBLIGATOIRE);
+
+        message.setId(1L);
+        ExceptionTestUtils.assertCoherenceThrownErrorList(() -> messageService.envoyer(message), MessageServiceImpl.ERROR_ID_DOIT_ETRE_NULL);
     }
 
     @Test

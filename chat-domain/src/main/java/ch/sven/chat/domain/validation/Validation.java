@@ -46,11 +46,22 @@ public class Validation {
      * Valider que l'objet n'est pas null
      * @param o Objet à valider
      * @param field Champs à valider
-     * @param message Message d'erreur si la condition est null
+     * @param message Message d'erreur si l'objet est null
      * @return L'instance de validation
      */
     public Validation notNull(Object o, String field, String message) {
         return not(Objects.isNull(o), field, message);
+    }
+
+    /**
+     * Valider que l'objet est null
+     * @param o Objet à valider
+     * @param field Champs à valider
+     * @param message Message d'erreur si l'objet n'est pas null
+     * @return L'instance de validation
+     */
+    public Validation isNull(Object o, String field, String message) {
+        return not(Objects.nonNull(o), field, message);
     }
 
     /**
