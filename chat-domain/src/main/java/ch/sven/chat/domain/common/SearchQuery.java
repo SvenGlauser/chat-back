@@ -8,7 +8,6 @@ import lombok.Data;
  */
 @Data
 public abstract class SearchQuery implements ValidationMethods {
-    private Long nombrePages;
-    private Long nombreElements;
-    private Long page;
+    private Integer taille;
+    private Integer index;
 }

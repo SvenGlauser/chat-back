@@ -1,8 +1,7 @@
 package ch.sven.chat.domain.message.repository;
 
+import ch.sven.chat.domain.common.SearchResult;
 import ch.sven.chat.domain.message.model.Message;
-
-import java.util.List;
 
 /**
  * Repository de gestion des messages
@@ -20,7 +19,7 @@ public interface MessageRepository {
      * @param messageSearchQuery Les éléments de recherche
      * @return Les messages
      */
-    List<Message> rechercher(MessageSearchQuery messageSearchQuery);
+    SearchResult<Message> rechercher(MessageSearchQuery messageSearchQuery);
 
     /**
      * Envoyer un message

@@ -7,9 +7,10 @@ import java.time.LocalDateTime;
 
 /**
  * Classe définissant les informations de base de chaque model
+ * @param <E> Le model
  */
 @Data
-public abstract class Model<T> implements ValidationMethods {
+public abstract class Model<E> implements ValidationMethods {
     private Long id;
     private LocalDateTime creation;
     private LocalDateTime modification;
@@ -19,5 +20,5 @@ public abstract class Model<T> implements ValidationMethods {
      * @param model Nouvelles valeurs
      * @return L'instance de l'éléments
      */
-    public abstract T modifyFields(T model);
+    public abstract E modifyFields(E model);
 }

@@ -23,6 +23,15 @@ class MessageTest {
     @Test
     void modifyFields() {
         Message message = new Message();
+
+        Utilisateur oldDestinataire = new Utilisateur();
+        oldDestinataire.setNom("OldDestinataire");
+        message.setDestinataire(oldDestinataire);
+
+        Utilisateur oldEmetteur = new Utilisateur();
+        oldEmetteur.setNom("OldÉmetteur");
+        message.setEmetteur(oldEmetteur);
+
         Message newMessage = new Message();
         newMessage.setContenu("Le contenu de test");
 
@@ -37,7 +46,7 @@ class MessageTest {
         message.modifyFields(newMessage);
 
         assertThat(message.getContenu()).isEqualTo("Le contenu de test");
-        assertThat(message.getDestinataire().getNom()).isEqualTo("Destinataire");
-        assertThat(message.getEmetteur().getNom()).isEqualTo("Émetteur");
+        assertThat(message.getDestinataire().getNom()).isEqualTo("OldDestinataire");
+        assertThat(message.getEmetteur().getNom()).isEqualTo("OldÉmetteur");
     }
 }

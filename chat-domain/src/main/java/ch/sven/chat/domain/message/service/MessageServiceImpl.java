@@ -1,6 +1,7 @@
 package ch.sven.chat.domain.message.service;
 
 import ch.sven.chat.domain.common.Model;
+import ch.sven.chat.domain.common.SearchResult;
 import ch.sven.chat.domain.exception.CoherenceException;
 import ch.sven.chat.domain.message.model.Message;
 import ch.sven.chat.domain.message.repository.MessageRepository;
@@ -8,7 +9,6 @@ import ch.sven.chat.domain.message.repository.MessageSearchQuery;
 import ch.sven.chat.domain.validation.Validation;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -38,7 +38,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<Message> rechercher(MessageSearchQuery searchQuery) {
+    public SearchResult<Message> rechercher(MessageSearchQuery searchQuery) {
         Validation.of(this.getClass())
                 .notNull(searchQuery, FIELD_SEARCH_QUERY, ERROR_SEARCH_QUERY_OBLIGATOIRE)
                 .validate();

@@ -16,7 +16,6 @@ public class Message extends Model<Message> {
     public static final String ERROR_EMETTEUR_OBLIGATOIRE = "L'émetteur est obligatoire";
     public static final String ERROR_DESTINATAIRE_OBLIGATOIRE = "Le destinataire est obligatoire";
 
-
     public static final String FIELD_CONTENU = "contenu";
     private static final String FIELD_EMETTEUR = "emetteur";
     private static final String FIELD_DESTINATAIRE = "destinataire";
@@ -41,8 +40,6 @@ public class Message extends Model<Message> {
     @Override
     public Message modifyFields(Message message) {
         this.contenu = message.contenu;
-        this.emetteur = message.emetteur;
-        this.destinataire = message.destinataire;
         return this;
     }
 }

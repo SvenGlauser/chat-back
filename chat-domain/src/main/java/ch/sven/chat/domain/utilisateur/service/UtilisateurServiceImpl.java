@@ -22,12 +22,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     private final UtilisateurRepositoy utilisateurRepositoy;
 
-    /**
-     * Lire un utilisateur
-     *
-     * @param id Id de l'utilisateur
-     * @return L'utilisateur
-     */
     @Override
     public Utilisateur lire(Long id) {
         Validation.of(this.getClass())
@@ -37,12 +31,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         return utilisateurRepositoy.lire(id);
     }
 
-    /**
-     * Créer un nouvel utilisateur
-     *
-     * @param utilisateur Utilisateur à créer
-     * @return Utilisateur créé
-     */
     @Override
     public Utilisateur creer(Utilisateur utilisateur) {
         Validation.of(this.getClass())
@@ -55,12 +43,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         return utilisateurRepositoy.creer(utilisateur);
     }
 
-    /**
-     * Modifier un utilisateur
-     *
-     * @param utilisateur Utilisateur à modifier
-     * @return Utilisateur modifié
-     */
     @Override
     public Utilisateur modifier(Utilisateur utilisateur) {
         Validation.of(this.getClass())
