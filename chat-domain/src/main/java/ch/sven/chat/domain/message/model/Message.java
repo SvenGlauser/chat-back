@@ -40,8 +40,6 @@ public class Message extends Model<Message> {
     @Override
     public Message modifyFields(Message message) {
         this.contenu = message.contenu;
-        this.emetteur = message.emetteur;
-        this.destinataire = message.destinataire;
         return this;
     }
 }

@@ -1,7 +1,6 @@
 package ch.sven.chat.application.common;
 
 import ch.sven.chat.domain.common.Model;
-import ch.sven.chat.domain.message.model.Message;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -23,6 +23,7 @@ public class UtilisateurDto extends Dto<Utilisateur> {
      * @param utilisateur Utilisateur
      */
     public UtilisateurDto(Utilisateur utilisateur) {
+        super(utilisateur);
         nom = utilisateur.getNom();
         prenom = utilisateur.getPrenom();
         imageUrl = utilisateur.getImageUrl();

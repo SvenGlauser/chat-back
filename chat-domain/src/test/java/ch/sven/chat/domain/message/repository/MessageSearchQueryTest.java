@@ -9,6 +9,7 @@ class MessageSearchQueryTest {
     void valider() {
         MessageSearchQuery searchQuery = new MessageSearchQuery();
         searchQuery.setIdDestinataire(1L);
+        searchQuery.setIdEmetteur(1L);
         searchQuery.valider();
 
         searchQuery.setIdDestinataire(null);

@@ -1,9 +1,8 @@
 package ch.sven.chat.domain.message.service;
 
+import ch.sven.chat.domain.common.SearchResult;
 import ch.sven.chat.domain.message.model.Message;
 import ch.sven.chat.domain.message.repository.MessageSearchQuery;
-
-import java.util.List;
 
 /**
  * Service de gestion des messages
@@ -18,10 +17,11 @@ public interface MessageService {
 
     /**
      * Rechercher une liste de messages
+     *
      * @param messageSearchQuery Les éléments de recherche
      * @return Les messages
      */
-    List<Message> rechercher(MessageSearchQuery messageSearchQuery);
+    SearchResult<Message> rechercher(MessageSearchQuery messageSearchQuery);
 
     /**
      * Envoyer un message

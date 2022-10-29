@@ -1,5 +1,6 @@
 package ch.sven.chat.domain.message.service;
 
+import ch.sven.chat.domain.common.SearchResult;
 import ch.sven.chat.domain.exception.ExceptionTestUtils;
 import ch.sven.chat.domain.message.model.Message;
 import ch.sven.chat.domain.message.repository.MessageRepository;
@@ -28,9 +29,8 @@ class MessageServiceImplTest {
 
     @Test
     void lire() {
-        Message message = new Message();
+        Message message = generateMessage();
         message.setId(1L);
-        message.setContenu("Mon contenu");
 
         Mockito.when(messageRepository.lire(Mockito.anyLong())).thenReturn(message);
         Message result = messageService.lire(message.getId());
@@ -44,42 +44,25 @@ class MessageServiceImplTest {
 
     @Test
     void rechercher() {
-        Message message = new Message();
+        Message message = generateMessage();
         message.setId(1L);
-        message.setContenu("Mon contenu");
-
-        Utilisateur destinataire = new Utilisateur();
-        destinataire.setNom("Destinataire");
-        message.setDestinataire(destinataire);
-
-        Utilisateur emetteur = new Utilisateur();
-        emetteur.setNom("Émetteur");
-        message.setEmetteur(emetteur);
 
         MessageSearchQuery messageSearchQuery = new MessageSearchQuery();
         messageSearchQuery.setIdDestinataire(1L);
+        messageSearchQuery.setIdEmetteur(1L);
 
-        Mockito.when(messageRepository.rechercher(Mockito.any(MessageSearchQuery.class))).thenReturn(List.of(message));
-        List<Message> result = messageService.rechercher(messageSearchQuery);
+        Mockito.when(messageRepository.rechercher(Mockito.any(MessageSearchQuery.class))).thenReturn(SearchResult.of(List.of(message)));
+        SearchResult<Message> result = messageService.rechercher(messageSearchQuery);
 
-        Assertions.assertThat(result).hasSizeGreaterThan(0);
-        assertThat(result.get(0)).isEqualTo(message);
+        Assertions.assertThat(result.getTotalElements()).isPositive();
+        assertThat(result.getElements().get(0)).isEqualTo(message);
 
         ExceptionTestUtils.assertCoherenceThrownErrorList(() -> messageService.rechercher(null), MessageServiceImpl.ERROR_SEARCH_QUERY_OBLIGATOIRE);
     }
 
     @Test
     void envoyer() {
-        Message message = new Message();
-        message.setContenu("Mon contenu");
-
-        Utilisateur destinataire = new Utilisateur();
-        destinataire.setNom("Destinataire");
-        message.setDestinataire(destinataire);
-
-        Utilisateur emetteur = new Utilisateur();
-        emetteur.setNom("Émetteur");
-        message.setEmetteur(emetteur);
+        Message message = generateMessage();
 
         Mockito.when(messageRepository.envoyer(Mockito.any(Message.class))).thenReturn(message);
         Message result = messageService.envoyer(message);
@@ -95,17 +78,8 @@ class MessageServiceImplTest {
 
     @Test
     void modifier() {
-        Message message = new Message();
+        Message message = generateMessage();
         message.setId(1L);
-        message.setContenu("Mon contenu");
-
-        Utilisateur destinataire = new Utilisateur();
-        destinataire.setNom("Destinataire");
-        message.setDestinataire(destinataire);
-
-        Utilisateur emetteur = new Utilisateur();
-        emetteur.setNom("Émetteur");
-        message.setEmetteur(emetteur);
 
         Mockito.when(messageRepository.lire(Mockito.anyLong())).thenReturn(message);
         Mockito.when(messageRepository.modifier(Mockito.any(Message.class))).thenReturn(message);
@@ -120,10 +94,25 @@ class MessageServiceImplTest {
         Mockito.when(messageRepository.lire(Mockito.anyLong())).thenReturn(null);
         ExceptionTestUtils.assertCoherenceThrownError(() -> messageService.modifier(message), MessageServiceImpl.ERROR_MESSAGE_NON_TROUVE);
     }
+
     @Test
     void supprimer() {
         messageService.supprimer(1L);
 
         ExceptionTestUtils.assertCoherenceThrownErrorList(() -> messageService.supprimer(null), MessageServiceImpl.ERROR_ID_OBLIGATOIRE);
+    }
+
+    private static Message generateMessage() {
+        Message message = new Message();
+        message.setContenu("Mon contenu");
+
+        Utilisateur destinataire = new Utilisateur();
+        destinataire.setNom("Destinataire");
+        message.setDestinataire(destinataire);
+
+        Utilisateur emetteur = new Utilisateur();
+        emetteur.setNom("Émetteur");
+        message.setEmetteur(emetteur);
+        return message;
     }
 }
