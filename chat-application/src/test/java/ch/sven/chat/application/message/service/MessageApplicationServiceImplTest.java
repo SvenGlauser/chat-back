@@ -5,10 +5,8 @@ import ch.sven.chat.application.message.dto.MessageDto;
 import ch.sven.chat.application.utilisateur.dto.UtilisateurDto;
 import ch.sven.chat.application.utilisateur.service.UtilisateurApplicationService;
 import ch.sven.chat.domain.common.SearchResult;
-import ch.sven.chat.domain.message.model.Message;
 import ch.sven.chat.domain.message.repository.MessageSearchQuery;
 import ch.sven.chat.domain.utilisateur.model.Theme;
-import ch.sven.chat.domain.utilisateur.model.Utilisateur;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MessageApplicationServiceImplTest {

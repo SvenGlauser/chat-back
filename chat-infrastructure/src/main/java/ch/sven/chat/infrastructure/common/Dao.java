@@ -23,11 +23,11 @@ public abstract class Dao<E extends Model<E>> {
     private Long id;
 
     @CreatedDate
-    @Column(name = "CREATION", nullable = false)
+    @Column(name = "CREATION", updatable = false, nullable = false)
     private LocalDateTime creation;
 
     @LastModifiedDate
-    @Column(name = "MODIFICATION", nullable = false)
+    @Column(name = "MODIFICATION", updatable = false, nullable = false)
     private LocalDateTime modification;
 
     protected Dao(E model) {

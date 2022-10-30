@@ -1,9 +1,7 @@
 package ch.sven.chat.application.common;
 
 import ch.sven.chat.domain.utilisateur.model.Theme;
-import ch.sven.chat.infrastructure.hibernate.message.MessageRepositoryHibernate;
 import ch.sven.chat.infrastructure.hibernate.utilisateur.UtilisateurRepositoryHibernate;
-import ch.sven.chat.infrastructure.message.entity.MessageEntity;
 import ch.sven.chat.infrastructure.utilisateur.entity.UtilisateurEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
