@@ -12,6 +12,12 @@ spring:
     hibernate:
       ddl-auto: none
 
+  mvc:
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+      time: HH:mm:ss
+
 server:
   port: 8080
   servlet:
