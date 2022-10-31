@@ -20,7 +20,7 @@ public class ExceptionTestUtils {
                         ((CoherenceException) exception)
                                 .getErrors()
                                 .stream()
-                                .map(ErrorField::getMessage)
+                                .map(ErrorField::message)
                                 .collect(Collectors.toList()), ITERABLE
                 ).containsOnly(errors);
     }

@@ -5,11 +5,13 @@ import ch.sven.chat.domain.utilisateur.service.UtilisateurService;
 import ch.sven.chat.domain.validation.Validation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class UtilisateurApplicationServiceImpl implements UtilisateurApplicationService {
     public static final String ERROR_ID_OBLIGATOIRE = "L'id du utilisateur est obligatoire";
     public static final String ERROR_UTILISATEUR_OBLIGATOIRE = "Le utilisateur est obligatoire";
@@ -29,6 +31,7 @@ public class UtilisateurApplicationServiceImpl implements UtilisateurApplication
     }
 
     @Override
+    @Transactional
     public UtilisateurDto creer(UtilisateurDto utilisateur) {
         Validation.of(this.getClass())
                 .notNull(utilisateur, FIELD_UTILISATEUR, ERROR_UTILISATEUR_OBLIGATOIRE)
@@ -38,6 +41,7 @@ public class UtilisateurApplicationServiceImpl implements UtilisateurApplication
     }
 
     @Override
+    @Transactional
     public UtilisateurDto modifier(UtilisateurDto utilisateur) {
         Validation.of(this.getClass())
                 .notNull(utilisateur, FIELD_UTILISATEUR, ERROR_UTILISATEUR_OBLIGATOIRE)

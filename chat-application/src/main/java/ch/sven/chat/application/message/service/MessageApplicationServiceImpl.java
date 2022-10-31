@@ -8,11 +8,13 @@ import ch.sven.chat.domain.validation.Validation;
 import ch.sven.chat.infrastructure.utils.search.SearchUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MessageApplicationServiceImpl implements MessageApplicationService {
     public static final String ERROR_ID_OBLIGATOIRE = "L'id du message est obligatoire";
     public static final String ERROR_MESSAGE_OBLIGATOIRE = "Le message est obligatoire";
@@ -42,6 +44,7 @@ public class MessageApplicationServiceImpl implements MessageApplicationService 
     }
 
     @Override
+    @Transactional
     public MessageDto envoyer(MessageDto message) {
         Validation.of(this.getClass())
                 .notNull(message, FIELD_MESSAGE, ERROR_MESSAGE_OBLIGATOIRE)
@@ -51,6 +54,7 @@ public class MessageApplicationServiceImpl implements MessageApplicationService 
     }
 
     @Override
+    @Transactional
     public MessageDto modifier(MessageDto message) {
         Validation.of(this.getClass())
                 .notNull(message, FIELD_MESSAGE, ERROR_MESSAGE_OBLIGATOIRE)
@@ -60,6 +64,7 @@ public class MessageApplicationServiceImpl implements MessageApplicationService 
     }
 
     @Override
+    @Transactional
     public void supprimer(Long id) {
         Validation.of(this.getClass())
                 .notNull(id, FIELD_ID, ERROR_ID_OBLIGATOIRE)

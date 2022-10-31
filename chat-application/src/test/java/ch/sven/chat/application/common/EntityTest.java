@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class EntityTest {
+class EntityTest {
 
     @Autowired
     UtilisateurRepositoryHibernate utilisateurRepositoryHibernate;
