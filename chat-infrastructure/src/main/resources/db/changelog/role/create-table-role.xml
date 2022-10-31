@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+    <changeSet id="create-table-role" author="Sven Glauser">
+        <createTable tableName="ROLE" schemaName="CHAT">
+            <column name="ID" type="BIGINT" autoIncrement="true"/>
+            <column name="CREATION" type="TIMESTAMP"/>
+            <column name="MODIFICATION" type="TIMESTAMP"/>
+            <column name="NOM" type="VARCHAR(255)"/>
+        </createTable>
+
+        <addPrimaryKey tableName="ROLE"
+                       schemaName="CHAT"
+                       columnNames="ID"
+                       constraintName="ROLE_PK_ID"/>
+
+        <addNotNullConstraint tableName="ROLE"
+                              schemaName="CHAT"
+                              columnName="CREATION"
+                              constraintName="ROLE_NN_CREATION"/>
+
+        <addNotNullConstraint tableName="ROLE"
+                              schemaName="CHAT"
+                              columnName="MODIFICATION"
+                              constraintName="ROLE_NN_MODIFICATION"/>
+
+        <addNotNullConstraint tableName="ROLE"
+                              schemaName="CHAT"
+                              columnName="NOM"
+                              constraintName="ROLE_NN_CONTENU"/>
+    </changeSet>
+</databaseChangeLog>

@@ -4,6 +4,7 @@ import ch.sven.chat.domain.common.SearchResult;
 import ch.sven.chat.domain.message.repository.MessageSearchQuery;
 import ch.sven.chat.infrastructure.message.entity.MessageEntity;
 import ch.sven.chat.infrastructure.utilisateur.entity.UtilisateurEntity;
+import ch.sven.chat.infrastructure.utils.search.SearchUtils;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -22,7 +23,7 @@ public interface MessageRepositoryHibernate extends JpaRepository<MessageEntity,
      * @return Une liste de messages
      */
     default SearchResult<MessageEntity> findAll(MessageSearchQuery searchQuery) {
-        return SearchResult.of(this.findAll(getCriteriaBuilder(searchQuery)));
+        return SearchUtils.of(this.findAll(getCriteriaBuilder(searchQuery), SearchUtils.getPageRequest(searchQuery)));
     }
 
     /**

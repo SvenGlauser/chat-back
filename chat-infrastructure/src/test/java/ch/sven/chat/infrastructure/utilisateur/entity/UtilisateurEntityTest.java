@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class UtilisateurEntityTest {
 
     @Test
-    void utilisateurDto() {
+    void utilisateurEntity() {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setId(1L);
         utilisateur.setTheme(Theme.SOMBRE);
