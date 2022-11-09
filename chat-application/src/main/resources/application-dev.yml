@@ -4,6 +4,15 @@ spring:
     username: sa
     password:
     driverClassName: org.h2.Driver
+
   h2:
     console:
       enabled: true
+
+keycloak:
+  realm: chat-keycloak
+  resource: chat-keycloak-front
+  auth-server-url: http://localhost:8081/
+  public-client: true
+  ssl-required: external
+  principal-attribute: preferred_username

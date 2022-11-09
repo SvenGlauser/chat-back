@@ -1,4 +1,4 @@
-package ch.sven.chat.application.security;
+package ch.sven.chat.security.roles;
 
 import org.springframework.stereotype.Component;
 
