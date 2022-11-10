@@ -7,12 +7,15 @@ import ch.sven.chat.application.utilisateur.service.UtilisateurApplicationServic
 import ch.sven.chat.domain.common.SearchResult;
 import ch.sven.chat.domain.message.repository.MessageSearchQuery;
 import ch.sven.chat.domain.utilisateur.model.Theme;
+import ch.sven.chat.security.roles.PermissionsConstantes;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.time.LocalDateTime;
 
+import static ch.sven.chat.application.configuration.SecurityConfigurationTest.USER_TEST;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -25,6 +28,7 @@ class MessageApplicationServiceImplTest {
     UtilisateurApplicationService utilisateurApplicationService;
 
     @Test
+    @WithMockUser(username = USER_TEST, authorities = {PermissionsConstantes.ROLE_ADMINISTRATEUR})
     void lire() {
         MessageDto message = generateMessage();
         message = messageApplicationService.envoyer(message);

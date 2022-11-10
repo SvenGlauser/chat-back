@@ -12,5 +12,6 @@ services:
     volumes:
       - ./imports:/opt/jboss/keycloak/imports
     command:
-      - "-Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export.json"
       - "start-dev"
+      - "-Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export.json"
+      - "--http-port=8081"
