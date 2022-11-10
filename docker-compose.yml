@@ -5,13 +5,30 @@ services:
     container_name: chat-keycloak
     image: quay.io/keycloak/keycloak:20.0.1
     ports:
-      - "8081:8080"
+      - "8081:8081"
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL_HOST: keycloak-db
+      KC_DB_URL_PORT: 5432
+      KC_DB_DATABASE: postgres
+      KC_DB_USERNAME: sa
+      KC_DB_PASSWORD: Passw0rd
+    depends_on:
+      - keycloak-db
     volumes:
       - ./imports:/opt/jboss/keycloak/imports
     command:
       - "start-dev"
       - "-Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export.json"
       - "--http-port=8081"
+  keycloak-db:
+    container_name: keycloak-db
+    image: postgres:15.0
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: Passw0rd
