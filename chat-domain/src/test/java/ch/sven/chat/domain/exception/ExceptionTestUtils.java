@@ -22,10 +22,4 @@ public class ExceptionTestUtils {
                                 .collect(Collectors.toList()), ITERABLE
                 ).containsOnly(errors);
     }
-
-    public static void assertCoherenceThrownError(ThrowableAssert.ThrowingCallable throwingCallable, String error) {
-        assertThatThrownBy(throwingCallable)
-                .isInstanceOf(CoherenceException.class)
-                .extracting(Throwable::getMessage).isEqualTo(error);
-    }
 }

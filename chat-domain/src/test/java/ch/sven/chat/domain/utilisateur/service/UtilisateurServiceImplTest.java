@@ -58,7 +58,7 @@ class UtilisateurServiceImplTest {
         ExceptionTestUtils.assertCoherenceThrownErrorList(() -> utilisateurService.modifier(null), UtilisateurServiceImpl.ERROR_UTILISATEUR_OBLIGATOIRE);
 
         Mockito.when(utilisateurRepositoy.lire(Mockito.anyLong())).thenReturn(null);
-        ExceptionTestUtils.assertCoherenceThrownError(() -> utilisateurService.modifier(utilisateur), UtilisateurServiceImpl.ERROR_UTILISATEUR_NON_TROUVE);
+        ExceptionTestUtils.assertCoherenceThrownErrorList(() -> utilisateurService.modifier(utilisateur), UtilisateurServiceImpl.ERROR_UTILISATEUR_NON_TROUVE);
 
     }
 }
