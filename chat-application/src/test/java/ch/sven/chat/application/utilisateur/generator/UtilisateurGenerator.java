@@ -8,6 +8,8 @@ import ch.sven.chat.infrastructure.utilisateur.entity.UtilisateurEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class UtilisateurGenerator {
@@ -23,6 +25,7 @@ public class UtilisateurGenerator {
 
     private UtilisateurDto generateUser(String nom) {
         UtilisateurEntity utilisateur = new UtilisateurEntity();
+        utilisateur.setKeycloakId(UUID.randomUUID().toString());
         utilisateur.setNom(nom);
         utilisateur.setPrenom("Test");
         utilisateur.setEmail("test@test.com");
