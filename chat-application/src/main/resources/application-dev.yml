@@ -2,12 +2,22 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/chat
     username: sa
-    password: Password
+    password: Passw0rd
 
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  batch:
+    job:
+      enabled: true
+    jdbc:
+      initialize-schema: always
+
+  sql:
+    init:
+      mode: always
 
 keycloak:
   realm: chat-keycloak
@@ -17,3 +27,12 @@ keycloak:
   ssl-required: external
   principal-attribute: preferred_username
   bearer-only: true
+
+chat:
+  auth-server-url: http://localhost:8081/
+  realm: chat-keycloak
+  administration:
+    realm: master
+    resource: admin-cli
+    user: admin
+    password: admin

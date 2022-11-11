@@ -13,6 +13,7 @@ import java.util.Optional;
 @Setter
 @NoArgsConstructor
 public class UtilisateurDto extends Dto<Utilisateur> {
+    private String keycloakId;
     private String nom;
     private String prenom;
     private String email;
@@ -25,6 +26,7 @@ public class UtilisateurDto extends Dto<Utilisateur> {
      */
     public UtilisateurDto(Utilisateur utilisateur) {
         super(utilisateur);
+        keycloakId = utilisateur.getKeycloakId();
         nom = utilisateur.getNom();
         prenom = utilisateur.getPrenom();
         email = utilisateur.getEmail();
@@ -35,6 +37,7 @@ public class UtilisateurDto extends Dto<Utilisateur> {
     @Override
     protected Utilisateur toDomainEntity() {
         Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setKeycloakId(keycloakId);
         utilisateur.setNom(nom);
         utilisateur.setPrenom(prenom);
         utilisateur.setEmail(email);

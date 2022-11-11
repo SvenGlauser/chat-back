@@ -8,6 +8,7 @@
     <changeSet id="create-table-utilisateur" author="Sven Glauser">
         <createTable tableName="UTILISATEUR" schemaName="CHAT">
             <column name="ID" type="BIGINT" autoIncrement="true"/>
+            <column name="ID_KEYCLOAK" type="VARCHAR(255)"/>
             <column name="CREATION" type="TIMESTAMP"/>
             <column name="MODIFICATION" type="TIMESTAMP"/>
             <column name="NOM" type="VARCHAR(255)"/>
@@ -26,6 +27,16 @@
                        schemaName="CHAT"
                        columnNames="ID"
                        constraintName="UTILISATEUR_PK_ID"/>
+
+        <addNotNullConstraint tableName="UTILISATEUR"
+                              schemaName="CHAT"
+                              columnName="ID_KEYCLOAK"
+                              constraintName="UTILISATEUR_NN_ID_KEYCLOAK"/>
+
+        <addUniqueConstraint tableName="UTILISATEUR"
+                             schemaName="CHAT"
+                             columnNames="ID_KEYCLOAK"
+                             constraintName="UTILISATEUR_UN_ID_KEYCLOAK"/>
 
         <addNotNullConstraint tableName="UTILISATEUR"
                               schemaName="CHAT"

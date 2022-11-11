@@ -31,13 +31,18 @@
         <postgresql.version>42.3.3</postgresql.version>
         <liquibase.version>4.17.1</liquibase.version>
         <springdoc-openapi-ui.version>1.6.12</springdoc-openapi-ui.version>
-        <keycloak-adapter-bom.version>20.0.1</keycloak-adapter-bom.version>
+        <keycloak.version>20.0.1</keycloak.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>ch.sven</groupId>
+                <artifactId>chat-users-synchronization</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>ch.sven</groupId>
                 <artifactId>chat-security</artifactId>
@@ -63,9 +68,14 @@
             <dependency>
                 <groupId>org.keycloak.bom</groupId>
                 <artifactId>keycloak-adapter-bom</artifactId>
-                <version>${keycloak-adapter-bom.version}</version>
+                <version>${keycloak.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-admin-client</artifactId>
+                <version>${keycloak.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>

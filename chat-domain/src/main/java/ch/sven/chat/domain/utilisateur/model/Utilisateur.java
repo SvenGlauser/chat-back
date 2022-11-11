@@ -23,6 +23,7 @@ public class Utilisateur extends Model<Utilisateur> {
     private static final String FIELD_IMAGE_URL = "imageUrl";
     private static final String FIELD_THEME = "theme";
 
+    private String keycloakId;
     private String nom;
     private String prenom;
     private String email;
@@ -41,9 +42,6 @@ public class Utilisateur extends Model<Utilisateur> {
 
     @Override
     public Utilisateur modifyFields(Utilisateur utilisateur) {
-        this.nom = utilisateur.nom;
-        this.prenom = utilisateur.prenom;
-        this.email = utilisateur.email;
         this.imageUrl = utilisateur.imageUrl;
         this.theme = utilisateur.theme;
         return this;

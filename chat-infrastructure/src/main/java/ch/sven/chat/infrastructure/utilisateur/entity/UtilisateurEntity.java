@@ -15,6 +15,9 @@ import javax.persistence.*;
 @Table(name = "UTILISATEUR", schema = "CHAT")
 @NoArgsConstructor
 public class UtilisateurEntity extends Dao<Utilisateur> {
+    @Column(name = "ID_KEYCLOAK", updatable = false)
+    private String keycloakId;
+
     @Column(name = "NOM", updatable = false)
     private String nom;
 
@@ -37,6 +40,7 @@ public class UtilisateurEntity extends Dao<Utilisateur> {
      */
     public UtilisateurEntity(Utilisateur utilisateur) {
         super(utilisateur);
+        keycloakId = utilisateur.getKeycloakId();
         nom = utilisateur.getNom();
         prenom = utilisateur.getPrenom();
         email = utilisateur.getEmail();
@@ -47,6 +51,7 @@ public class UtilisateurEntity extends Dao<Utilisateur> {
     @Override
     protected Utilisateur toDomainEntity() {
         Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setKeycloakId(keycloakId);
         utilisateur.setNom(nom);
         utilisateur.setPrenom(prenom);
         utilisateur.setEmail(email);
