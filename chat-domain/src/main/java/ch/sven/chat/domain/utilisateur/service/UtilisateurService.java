@@ -15,13 +15,6 @@ public interface UtilisateurService {
     Utilisateur lire(Long id);
 
     /**
-     * Créer un nouvel utilisateur
-     * @param utilisateur Utilisateur à créer
-     * @return Utilisateur créé
-     */
-    Utilisateur creer(Utilisateur utilisateur);
-
-    /**
      * Modifier un utilisateur
      * @param utilisateur Utilisateur à modifier
      * @return Utilisateur modifié

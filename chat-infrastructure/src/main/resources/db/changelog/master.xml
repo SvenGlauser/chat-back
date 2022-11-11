@@ -7,7 +7,6 @@
 
     <include file="schema.sql"/>
     <include file="db/changelog/utilisateur/create-table-utilisateur.xml"/>
-    <include file="db/changelog/role/create-table-role.xml"/>
     <include file="db/changelog/message/create-table-message.xml"/>
 
 </databaseChangeLog>

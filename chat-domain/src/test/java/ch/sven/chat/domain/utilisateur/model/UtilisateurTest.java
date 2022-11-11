@@ -15,6 +15,7 @@ class UtilisateurTest {
                 user::valider,
                 Utilisateur.ERROR_NOM_OBLIGATOIRE,
                 Utilisateur.ERROR_PRENOM_OBLIGATOIRE,
+                Utilisateur.ERROR_EMAIL_OBLIGATOIRE,
                 Utilisateur.ERROR_IMAGE_URL_OBLIGATOIRE,
                 Utilisateur.ERROR_THEME_OBLIGATOIRE
         );

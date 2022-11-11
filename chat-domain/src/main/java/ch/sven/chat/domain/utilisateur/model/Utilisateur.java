@@ -13,16 +13,19 @@ import lombok.EqualsAndHashCode;
 public class Utilisateur extends Model<Utilisateur> {
     public static final String ERROR_NOM_OBLIGATOIRE = "Le nom est obligatoire";
     public static final String ERROR_PRENOM_OBLIGATOIRE = "Le prénom est obligatoire";
+    public static final String ERROR_EMAIL_OBLIGATOIRE = "L'email est obligatoire";
     public static final String ERROR_IMAGE_URL_OBLIGATOIRE = "L'URL de l'image est obligatoire est obligatoire";
     public static final String ERROR_THEME_OBLIGATOIRE = "Le thème est obligatoire";
 
     private static final String FIELD_NOM = "nom";
     private static final String FIELD_PRENOM = "prenom";
+    private static final String FIELD_EMAIL = "email";
     private static final String FIELD_IMAGE_URL = "imageUrl";
     private static final String FIELD_THEME = "theme";
 
     private String nom;
     private String prenom;
+    private String email;
     private String imageUrl;
     private Theme theme;
 
@@ -31,16 +34,18 @@ public class Utilisateur extends Model<Utilisateur> {
         return validation
                 .notNull(nom, FIELD_NOM, ERROR_NOM_OBLIGATOIRE)
                 .notNull(prenom, FIELD_PRENOM, ERROR_PRENOM_OBLIGATOIRE)
+                .notNull(prenom, FIELD_EMAIL, ERROR_EMAIL_OBLIGATOIRE)
                 .notNull(imageUrl, FIELD_IMAGE_URL, ERROR_IMAGE_URL_OBLIGATOIRE)
                 .notNull(theme, FIELD_THEME, ERROR_THEME_OBLIGATOIRE);
     }
 
     @Override
-    public Utilisateur modifyFields(Utilisateur old) {
-        this.nom = old.nom;
-        this.prenom = old.prenom;
-        this.imageUrl = old.imageUrl;
-        this.theme = old.theme;
+    public Utilisateur modifyFields(Utilisateur utilisateur) {
+        this.nom = utilisateur.nom;
+        this.prenom = utilisateur.prenom;
+        this.email = utilisateur.email;
+        this.imageUrl = utilisateur.imageUrl;
+        this.theme = utilisateur.theme;
         return this;
     }
 }

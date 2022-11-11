@@ -15,6 +15,7 @@ import java.util.Optional;
 public class UtilisateurDto extends Dto<Utilisateur> {
     private String nom;
     private String prenom;
+    private String email;
     private String imageUrl;
     private String theme;
 
@@ -26,6 +27,7 @@ public class UtilisateurDto extends Dto<Utilisateur> {
         super(utilisateur);
         nom = utilisateur.getNom();
         prenom = utilisateur.getPrenom();
+        email = utilisateur.getEmail();
         imageUrl = utilisateur.getImageUrl();
         theme = Optional.ofNullable(utilisateur.getTheme()).map(Enum::name).orElse(null);
     }
@@ -35,6 +37,7 @@ public class UtilisateurDto extends Dto<Utilisateur> {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(nom);
         utilisateur.setPrenom(prenom);
+        utilisateur.setEmail(email);
         utilisateur.setImageUrl(imageUrl);
         utilisateur.setTheme(Optional.ofNullable(theme).map(Theme::valueOf).orElse(null));
         return utilisateur;

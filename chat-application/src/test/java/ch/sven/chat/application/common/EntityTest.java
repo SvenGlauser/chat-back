@@ -5,6 +5,7 @@ import ch.sven.chat.infrastructure.hibernate.utilisateur.UtilisateurRepositoryHi
 import ch.sven.chat.infrastructure.utilisateur.entity.UtilisateurEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
@@ -45,6 +46,6 @@ class EntityTest {
 
         assertThat(utilisateur).isNotNull();
         assertThat(utilisateur.getModification()).isAfterOrEqualTo(before);
-        assertThat(utilisateur.getModification()).isBeforeOrEqualTo(after);
+        assertThat(utilisateur.getCreation()).isBeforeOrEqualTo(after);
     }
 }

@@ -39,26 +39,6 @@ class UtilisateurServiceImplTest {
     }
 
     @Test
-    void creer() {
-        Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setNom("Nom");
-        utilisateur.setPrenom("Prenom");
-        utilisateur.setImageUrl("https://google.com");
-        utilisateur.setTheme(Theme.SOMBRE);
-
-        Mockito.when(utilisateurRepositoy.creer(Mockito.any(Utilisateur.class))).thenReturn(utilisateur);
-        Utilisateur result = utilisateurService.creer(utilisateur);
-
-        assertThat(result).isNotNull();
-        assertThat(result.getNom()).isEqualTo("Nom");
-
-        ExceptionTestUtils.assertCoherenceThrownErrorList(() -> utilisateurService.creer(null), UtilisateurServiceImpl.ERROR_UTILISATEUR_OBLIGATOIRE);
-
-        utilisateur.setId(1L);
-        ExceptionTestUtils.assertCoherenceThrownErrorList(() -> utilisateurService.creer(utilisateur), UtilisateurServiceImpl.ERROR_ID_DOIT_ETRE_NULL);
-    }
-
-    @Test
     void modifier() {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setId(1L);

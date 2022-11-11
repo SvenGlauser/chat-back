@@ -35,17 +35,6 @@ public class UtilisateurApplicationServiceImpl implements UtilisateurApplication
     @Override
     @Transactional
     @PostAuthorize("hasAuthority(@permissionsConstantes.ROLE_UTILISATEUR)")
-    public UtilisateurDto creer(UtilisateurDto utilisateur) {
-        Validation.of(this.getClass())
-                .notNull(utilisateur, FIELD_UTILISATEUR, ERROR_UTILISATEUR_OBLIGATOIRE)
-                .validate();
-
-        return Optional.ofNullable(utilisateurService.creer(utilisateur.toDomain())).map(UtilisateurDto::new).orElse(null);
-    }
-
-    @Override
-    @Transactional
-    @PostAuthorize("hasAuthority(@permissionsConstantes.ROLE_UTILISATEUR)")
     public UtilisateurDto modifier(UtilisateurDto utilisateur) {
         Validation.of(this.getClass())
                 .notNull(utilisateur, FIELD_UTILISATEUR, ERROR_UTILISATEUR_OBLIGATOIRE)

@@ -1,6 +1,5 @@
 package ch.sven.chat.domain.utilisateur.service;
 
-import ch.sven.chat.domain.common.Model;
 import ch.sven.chat.domain.exception.CoherenceException;
 import ch.sven.chat.domain.utilisateur.model.Utilisateur;
 import ch.sven.chat.domain.utilisateur.repository.UtilisateurRepositoy;
@@ -8,7 +7,6 @@ import ch.sven.chat.domain.validation.Validation;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class UtilisateurServiceImpl implements UtilisateurService {
@@ -29,18 +27,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                 .validate();
 
         return utilisateurRepositoy.lire(id);
-    }
-
-    @Override
-    public Utilisateur creer(Utilisateur utilisateur) {
-        Validation.of(this.getClass())
-                .notNull(utilisateur, FIELD_UTILISATEUR, ERROR_UTILISATEUR_OBLIGATOIRE)
-                .isNull(Optional.ofNullable(utilisateur).map(Model::getId).orElse(null), FIELD_ID, ERROR_ID_DOIT_ETRE_NULL)
-                .validate();
-
-        utilisateur.valider();
-
-        return utilisateurRepositoy.creer(utilisateur);
     }
 
     @Override

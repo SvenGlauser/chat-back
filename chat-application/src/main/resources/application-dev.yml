@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:h2:file:~/data/chat
+    url: jdbc:postgresql://localhost:5432/chat
     username: sa
-    password:
-    driverClassName: org.h2.Driver
+    password: Password
 
-  h2:
-    console:
-      enabled: true
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 keycloak:
   realm: chat-keycloak

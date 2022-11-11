@@ -10,25 +10,26 @@ services:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
       KC_DB: postgres
-      KC_DB_URL_HOST: keycloak-db
-      KC_DB_URL_PORT: 5432
-      KC_DB_DATABASE: postgres
+      KC_DB_URL: jdbc:postgresql://chat-database:5432/chat
+      KC_DB_SCHEMA: keycloak
       KC_DB_USERNAME: sa
       KC_DB_PASSWORD: Passw0rd
     depends_on:
-      - keycloak-db
+      - chat-database
     volumes:
       - ./imports:/opt/jboss/keycloak/imports
     command:
       - "start-dev"
       - "-Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export.json"
       - "--http-port=8081"
-  keycloak-db:
-    container_name: keycloak-db
+  chat-database:
+    container_name: chat-database
     image: postgres:15.0
     ports:
       - "5432:5432"
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      POSTGRES_DB: keycloak
+      POSTGRES_DB: chat
       POSTGRES_USER: sa
       POSTGRES_PASSWORD: Passw0rd

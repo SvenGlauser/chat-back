@@ -23,11 +23,6 @@ public class UtilisateurController {
         return new ResponseEntity<>(response, Objects.nonNull(response) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UtilisateurDto> envoyer(@RequestBody UtilisateurDto utilisateur) {
-        return new ResponseEntity<>(utilisateurApplicationService.creer(utilisateur), HttpStatus.OK);
-    }
-
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UtilisateurDto> modifier(@RequestBody UtilisateurDto utilisateur) {
         return new ResponseEntity<>(utilisateurApplicationService.modifier(utilisateur), HttpStatus.OK);

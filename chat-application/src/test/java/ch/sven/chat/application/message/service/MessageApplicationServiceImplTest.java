@@ -3,13 +3,13 @@ package ch.sven.chat.application.message.service;
 import ch.sven.chat.application.exception.ExceptionTestUtils;
 import ch.sven.chat.application.message.dto.MessageDto;
 import ch.sven.chat.application.utilisateur.dto.UtilisateurDto;
-import ch.sven.chat.application.utilisateur.service.UtilisateurApplicationService;
+import ch.sven.chat.application.utilisateur.generator.UtilisateurGenerator;
 import ch.sven.chat.domain.common.SearchResult;
 import ch.sven.chat.domain.message.repository.MessageSearchQuery;
-import ch.sven.chat.domain.utilisateur.model.Theme;
 import ch.sven.chat.security.roles.PermissionsConstantes;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 
@@ -25,10 +25,10 @@ class MessageApplicationServiceImplTest {
     MessageApplicationServiceImpl messageApplicationService;
 
     @Autowired
-    UtilisateurApplicationService utilisateurApplicationService;
+    UtilisateurGenerator utilisateurGenerator;
 
     @Test
-    @WithMockUser(username = USER_TEST, authorities = {PermissionsConstantes.ROLE_ADMINISTRATEUR})
+    @WithMockUser(username = USER_TEST, authorities = {PermissionsConstantes.ROLE_UTILISATEUR})
     void lire() {
         MessageDto message = generateMessage();
         message = messageApplicationService.envoyer(message);
@@ -44,27 +44,11 @@ class MessageApplicationServiceImplTest {
     }
 
     @Test
+    @WithMockUser(username = USER_TEST, authorities = {PermissionsConstantes.ROLE_UTILISATEUR})
     void rechercher() {
-        UtilisateurDto destinataire = new UtilisateurDto();
-        destinataire.setNom("Destinataire");
-        destinataire.setPrenom("Prenom");
-        destinataire.setImageUrl("https://google.com");
-        destinataire.setTheme(Theme.CLAIR.name());
-        destinataire = utilisateurApplicationService.creer(destinataire);
-
-        UtilisateurDto destinataire1 = new UtilisateurDto();
-        destinataire1.setNom("Destinataire");
-        destinataire1.setPrenom("Prenom");
-        destinataire1.setImageUrl("https://google.com");
-        destinataire1.setTheme(Theme.CLAIR.name());
-        destinataire1 = utilisateurApplicationService.creer(destinataire1);
-
-        UtilisateurDto emetteur = new UtilisateurDto();
-        emetteur.setNom("Émetteur");
-        emetteur.setPrenom("Prenom");
-        emetteur.setImageUrl("https://google.com");
-        emetteur.setTheme(Theme.CLAIR.name());
-        emetteur = utilisateurApplicationService.creer(emetteur);
+        UtilisateurDto destinataire = utilisateurGenerator.generate("Destinataire");
+        UtilisateurDto destinataire1 = utilisateurGenerator.generate("Destinataire1");
+        UtilisateurDto emetteur = utilisateurGenerator.generate("Émetteur");
 
         MessageDto message = generateMessage(destinataire, emetteur);
         message.setContenu("1");
@@ -86,12 +70,7 @@ class MessageApplicationServiceImplTest {
         assertThat(result.getTotalElements()).isEqualTo(1);
         assertThat(result.getElements().get(0).getContenu()).isEqualTo("2");
 
-        UtilisateurDto emetteur1 = new UtilisateurDto();
-        emetteur1.setNom("Destinataire");
-        emetteur1.setPrenom("Prenom");
-        emetteur1.setImageUrl("https://google.com");
-        emetteur1.setTheme(Theme.CLAIR.name());
-        emetteur1 = utilisateurApplicationService.creer(emetteur1);
+        UtilisateurDto emetteur1 = utilisateurGenerator.generate("Émetteur 1");
 
         MessageDto message2 = generateMessage(destinataire1, emetteur1);
         message2.setContenu("3");
@@ -127,6 +106,7 @@ class MessageApplicationServiceImplTest {
     }
 
     @Test
+    @WithMockUser(username = USER_TEST, authorities = {PermissionsConstantes.ROLE_UTILISATEUR})
     void envoyer() {
         MessageDto message = generateMessage();
         message = messageApplicationService.envoyer(message);
@@ -139,6 +119,7 @@ class MessageApplicationServiceImplTest {
     }
 
     @Test
+    @WithMockUser(username = USER_TEST, authorities = {PermissionsConstantes.ROLE_UTILISATEUR})
     void modifier() {
         MessageDto message = generateMessage();
         message = messageApplicationService.envoyer(message);
@@ -153,6 +134,7 @@ class MessageApplicationServiceImplTest {
     }
 
     @Test
+    @WithMockUser(username = USER_TEST, authorities = {PermissionsConstantes.ROLE_UTILISATEUR})
     void supprimer() {
         MessageDto message = generateMessage();
         message = messageApplicationService.envoyer(message);
@@ -170,19 +152,11 @@ class MessageApplicationServiceImplTest {
         MessageDto message = new MessageDto();
         message.setContenu("Mon contenu");
 
-        UtilisateurDto destinataire = new UtilisateurDto();
-        destinataire.setNom("Destinataire");
-        destinataire.setPrenom("Prenom");
-        destinataire.setImageUrl("https://google.com");
-        destinataire.setTheme(Theme.CLAIR.name());
-        message.setDestinataire(utilisateurApplicationService.creer(destinataire));
+        UtilisateurDto destinataire = utilisateurGenerator.generate("Destinataire");
+        message.setDestinataire(destinataire);
 
-        UtilisateurDto emetteur = new UtilisateurDto();
-        emetteur.setNom("Émetteur");
-        emetteur.setPrenom("Prenom");
-        emetteur.setImageUrl("https://google.com");
-        emetteur.setTheme(Theme.CLAIR.name());
-        message.setEmetteur(utilisateurApplicationService.creer(emetteur));
+        UtilisateurDto emetteur = utilisateurGenerator.generate("Émetteur");
+        message.setEmetteur(emetteur);
         return message;
     }
 

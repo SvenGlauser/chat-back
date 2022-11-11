@@ -13,6 +13,7 @@
         <module>chat-infrastructure</module>
         <module>chat-application</module>
         <module>chat-security</module>
+        <module>chat-users-synchronization</module>
     </modules>
 
     <properties>
@@ -27,7 +28,7 @@
         <mockito.version>4.8.1</mockito.version>
         <mockito-junit.version>4.5.1</mockito-junit.version>
         <junit.version>5.8.2</junit.version>
-        <h2.version>2.1.214</h2.version>
+        <postgresql.version>42.3.3</postgresql.version>
         <liquibase.version>4.17.1</liquibase.version>
         <springdoc-openapi-ui.version>1.6.12</springdoc-openapi-ui.version>
         <keycloak-adapter-bom.version>20.0.1</keycloak-adapter-bom.version>
@@ -101,9 +102,9 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${h2.version}</version>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
