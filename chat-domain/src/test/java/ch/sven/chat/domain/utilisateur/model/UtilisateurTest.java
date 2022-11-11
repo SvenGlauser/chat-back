@@ -27,12 +27,14 @@ class UtilisateurTest {
         Utilisateur newUser = new Utilisateur();
         newUser.setNom("Nom");
         newUser.setPrenom("Prénom");
+        newUser.setEmail("test@test.test");
         newUser.setTheme(Theme.SOMBRE);
         newUser.setImageUrl("https://google.com");
         user.modifyFields(newUser);
 
-        assertThat(user.getNom()).isEqualTo("Nom");
-        assertThat(user.getPrenom()).isEqualTo("Prénom");
+        assertThat(user.getNom()).isNull();
+        assertThat(user.getPrenom()).isNull();
+        assertThat(user.getEmail()).isNull();
         assertThat(user.getImageUrl()).isEqualTo("https://google.com");
         assertThat(user.getTheme()).isEqualTo(Theme.SOMBRE);
     }
