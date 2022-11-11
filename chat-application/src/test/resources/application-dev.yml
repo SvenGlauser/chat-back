@@ -8,3 +8,12 @@ spring:
   batch:
     job:
       enabled: false
+
+chat:
+  auth-server-url: http://localhost:8081/
+  realm: chat-keycloak
+  administration:
+    realm: master
+    resource: admin-cli
+    user: admin
+    password: admin
