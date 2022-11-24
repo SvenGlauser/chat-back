@@ -21,7 +21,17 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepositoy {
     }
 
     @Override
+    public Utilisateur lireIdKeycloak(String idKeycloak) {
+        return utilisateurRepositoryHibernate.findByKeycloakId(idKeycloak).map(Dao::toDomain).orElse(null);
+    }
+
+    @Override
     public Utilisateur modifier(Utilisateur utilisateur) {
+        return Optional.of(utilisateurRepositoryHibernate.save(new UtilisateurEntity(utilisateur))).map(Dao::toDomain).orElse(null);
+    }
+
+    @Override
+    public Utilisateur creer(Utilisateur utilisateur) {
         return Optional.of(utilisateurRepositoryHibernate.save(new UtilisateurEntity(utilisateur))).map(Dao::toDomain).orElse(null);
     }
 }

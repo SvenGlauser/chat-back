@@ -3,6 +3,7 @@ package ch.sven.chat.application.utilisateur.service;
 import ch.sven.chat.application.utilisateur.dto.UtilisateurDto;
 import ch.sven.chat.domain.utilisateur.service.UtilisateurService;
 import ch.sven.chat.domain.validation.Validation;
+import ch.sven.chat.userssynchronization.utilisateur.UtilisateurSynchronisationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class UtilisateurApplicationServiceImpl implements UtilisateurApplication
     private static final String FIELD_UTILISATEUR = "utilisateur";
 
     private final UtilisateurService utilisateurService;
+    private final UtilisateurSynchronisationService utilisateurSynchronisationService;
 
     @Override
     @PostAuthorize("hasAuthority(@permissionsConstantes.ROLE_UTILISATEUR)")
@@ -41,5 +43,10 @@ public class UtilisateurApplicationServiceImpl implements UtilisateurApplication
                 .validate();
 
         return Optional.ofNullable(utilisateurService.modifier(utilisateur.toDomain())).map(UtilisateurDto::new).orElse(null);
+    }
+
+    @Override
+    public void synchroniser(String idKeycloak) {
+        utilisateurSynchronisationService.synchroniser(idKeycloak);
     }
 }

@@ -27,4 +27,10 @@ public class UtilisateurController {
     public ResponseEntity<UtilisateurDto> modifier(@RequestBody UtilisateurDto utilisateur) {
         return new ResponseEntity<>(utilisateurApplicationService.modifier(utilisateur), HttpStatus.OK);
     }
+
+    @PostMapping(path = "/synchroniser/{idKeycloak}")
+    public ResponseEntity<Void> lire(@PathVariable("idKeycloak") String idKeycloak) {
+        utilisateurApplicationService.synchroniser(idKeycloak);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

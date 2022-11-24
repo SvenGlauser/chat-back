@@ -20,4 +20,10 @@ public interface UtilisateurApplicationService {
      * @return Utilisateur modifié
      */
     UtilisateurDto modifier(UtilisateurDto utilisateur);
+
+    /**
+     * Synchroniser un utilisateur
+     * @param idKeycloak Id Keycloak de l'utilisateur à synchroniser
+     */
+    void synchroniser(String idKeycloak);
 }
