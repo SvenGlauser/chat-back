@@ -2,7 +2,7 @@ package ch.sven.chat.domain.utilisateur.repository;
 
 import ch.sven.chat.domain.utilisateur.model.Utilisateur;
 
-public interface UtilisateurRepositoy {
+public interface UtilisateurRepository {
 
     /**
      * Lire un utilisateur

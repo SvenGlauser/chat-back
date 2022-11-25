@@ -3,6 +3,8 @@ package ch.sven.chat.domain.utilisateur.model;
 import ch.sven.chat.domain.exception.ExceptionTestUtils;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class UtilisateurTest {
@@ -13,6 +15,7 @@ class UtilisateurTest {
 
         ExceptionTestUtils.assertCoherenceThrownErrorList(
                 user::valider,
+                Utilisateur.ERROR_KEYCLOAK_ID_OBLIGATOIRE,
                 Utilisateur.ERROR_NOM_OBLIGATOIRE,
                 Utilisateur.ERROR_PRENOM_OBLIGATOIRE,
                 Utilisateur.ERROR_EMAIL_OBLIGATOIRE,
@@ -30,6 +33,7 @@ class UtilisateurTest {
         newUser.setEmail("test@test.test");
         newUser.setTheme(Theme.SOMBRE);
         newUser.setImageUrl("https://google.com");
+        newUser.setKeycloakId(UUID.randomUUID().toString());
         user.modifyFields(newUser);
 
         assertThat(user.getNom()).isNull();

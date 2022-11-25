@@ -7,6 +7,7 @@ public interface UtilisateurSynchronisationService {
     /**
      * Synchroniser un utilisateur
      * @param idKeycloak Id keycloak à synchroniser
+     * @return True si la synchronisation s'est déroulée correctement
      */
-    void synchroniser(String idKeycloak);
+    boolean synchroniser(String idKeycloak);
 }

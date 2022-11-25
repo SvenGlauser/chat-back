@@ -2,7 +2,7 @@ package ch.sven.chat.domain.utilisateur.service;
 
 import ch.sven.chat.domain.exception.CoherenceException;
 import ch.sven.chat.domain.utilisateur.model.Utilisateur;
-import ch.sven.chat.domain.utilisateur.repository.UtilisateurRepositoy;
+import ch.sven.chat.domain.utilisateur.repository.UtilisateurRepository;
 import ch.sven.chat.domain.validation.Validation;
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +18,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     private static final String FIELD_ID = "id";
     private static final String FIELD_UTILISATEUR = "utilisateur";
 
-    private final UtilisateurRepositoy utilisateurRepositoy;
+    private final UtilisateurRepository utilisateurRepository;
 
     @Override
     public Utilisateur lire(Long id) {
@@ -26,7 +26,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                 .notNull(id, FIELD_ID, ERROR_ID_OBLIGATOIRE)
                 .validate();
 
-        return utilisateurRepositoy.lire(id);
+        return utilisateurRepository.lire(id);
     }
 
     @Override
@@ -35,13 +35,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                 .notNull(utilisateur, FIELD_UTILISATEUR, ERROR_UTILISATEUR_OBLIGATOIRE)
                 .validate();
 
-        Utilisateur oldUtilisateur = utilisateurRepositoy.lire(utilisateur.getId());
+        Utilisateur oldUtilisateur = utilisateurRepository.lire(utilisateur.getId());
         if (Objects.isNull(oldUtilisateur)) {
             throw new CoherenceException(this.getClass().getSimpleName(), ERROR_UTILISATEUR_NON_TROUVE);
         }
 
         oldUtilisateur.modifyFields(utilisateur).valider();
 
-        return utilisateurRepositoy.modifier(oldUtilisateur);
+        return utilisateurRepository.modifier(oldUtilisateur);
     }
 }

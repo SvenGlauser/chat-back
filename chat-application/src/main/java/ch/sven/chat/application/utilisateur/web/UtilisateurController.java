@@ -23,14 +23,14 @@ public class UtilisateurController {
         return new ResponseEntity<>(response, Objects.nonNull(response) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
+    @PostMapping(path = "/synchroniser/{idKeycloak}")
+    public ResponseEntity<Void> lire(@PathVariable("idKeycloak") String idKeycloak) {
+        boolean result = utilisateurApplicationService.synchroniser(idKeycloak);
+        return new ResponseEntity<>(result ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UtilisateurDto> modifier(@RequestBody UtilisateurDto utilisateur) {
         return new ResponseEntity<>(utilisateurApplicationService.modifier(utilisateur), HttpStatus.OK);
-    }
-
-    @PostMapping(path = "/synchroniser/{idKeycloak}")
-    public ResponseEntity<Void> lire(@PathVariable("idKeycloak") String idKeycloak) {
-        utilisateurApplicationService.synchroniser(idKeycloak);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

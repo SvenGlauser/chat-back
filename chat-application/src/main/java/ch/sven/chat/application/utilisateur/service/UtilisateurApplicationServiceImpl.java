@@ -17,9 +17,11 @@ import java.util.Optional;
 public class UtilisateurApplicationServiceImpl implements UtilisateurApplicationService {
     public static final String ERROR_ID_OBLIGATOIRE = "L'id du utilisateur est obligatoire";
     public static final String ERROR_UTILISATEUR_OBLIGATOIRE = "Le utilisateur est obligatoire";
+    public static final String ERROR_ID_KEYCLOAK_OBLIGATOIRE = "L'id de Keycloak est obligatoire";
 
     private static final String FIELD_ID = "id";
     private static final String FIELD_UTILISATEUR = "utilisateur";
+    private static final String FIELD_ID_KEYCLOAK = "idKeylcoak";
 
     private final UtilisateurService utilisateurService;
     private final UtilisateurSynchronisationService utilisateurSynchronisationService;
@@ -46,7 +48,13 @@ public class UtilisateurApplicationServiceImpl implements UtilisateurApplication
     }
 
     @Override
-    public void synchroniser(String idKeycloak) {
-        utilisateurSynchronisationService.synchroniser(idKeycloak);
+    @Transactional
+    @PostAuthorize("hasAuthority(@permissionsConstantes.ROLE_UTILISATEUR)")
+    public boolean synchroniser(String idKeycloak) {
+        Validation.of(this.getClass())
+                .notNull(idKeycloak, FIELD_ID_KEYCLOAK, ERROR_ID_KEYCLOAK_OBLIGATOIRE)
+                .validate();
+
+        return utilisateurSynchronisationService.synchroniser(idKeycloak);
     }
 }

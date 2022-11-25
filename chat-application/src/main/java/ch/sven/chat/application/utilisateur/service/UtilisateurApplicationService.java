@@ -24,6 +24,7 @@ public interface UtilisateurApplicationService {
     /**
      * Synchroniser un utilisateur
      * @param idKeycloak Id Keycloak de l'utilisateur à synchroniser
+     * @return True si la synchronisation s'est déroulée correctement
      */
-    void synchroniser(String idKeycloak);
+    boolean synchroniser(String idKeycloak);
 }
