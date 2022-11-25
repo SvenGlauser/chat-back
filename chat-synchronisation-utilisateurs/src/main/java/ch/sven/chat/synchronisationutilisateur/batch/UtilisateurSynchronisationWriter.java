@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class UtilisateurSynchronizationWriter implements ItemWriter<UtilisateurEntity> {
+public class UtilisateurSynchronisationWriter implements ItemWriter<UtilisateurEntity> {
     private final UtilisateurRepositoryHibernate utilisateurRepositoy;
 
     @Override

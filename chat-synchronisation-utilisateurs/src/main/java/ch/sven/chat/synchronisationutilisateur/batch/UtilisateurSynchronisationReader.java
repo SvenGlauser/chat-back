@@ -13,7 +13,7 @@ import java.util.Objects;
 @JobScope
 @Component
 @RequiredArgsConstructor
-public class UtilisateurSynchronizationReader implements ItemReader<UserRepresentation> {
+public class UtilisateurSynchronisationReader implements ItemReader<UserRepresentation> {
 
     private final KeycloakAdmin keycloakAdmin;
 

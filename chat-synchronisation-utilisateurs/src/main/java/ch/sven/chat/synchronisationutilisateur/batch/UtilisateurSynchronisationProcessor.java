@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UtilisateurSynchronizationProcessor implements ItemProcessor<UserRepresentation, UtilisateurEntity> {
+public class UtilisateurSynchronisationProcessor implements ItemProcessor<UserRepresentation, UtilisateurEntity> {
     private final UtilisateurRepository utilisateurRepository;
 
     @Override
