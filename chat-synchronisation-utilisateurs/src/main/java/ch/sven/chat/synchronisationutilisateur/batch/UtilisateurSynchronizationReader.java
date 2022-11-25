@@ -1,6 +1,6 @@
-package ch.sven.chat.userssynchronization.batch;
+package ch.sven.chat.synchronisationutilisateur.batch;
 
-import ch.sven.chat.userssynchronization.keycloak.KeycloakAdmin;
+import ch.sven.chat.synchronisationutilisateur.keycloak.KeycloakAdmin;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.batch.core.configuration.annotation.JobScope;
@@ -13,7 +13,7 @@ import java.util.Objects;
 @JobScope
 @Component
 @RequiredArgsConstructor
-public class UsersSynchronizationReader implements ItemReader<UserRepresentation> {
+public class UtilisateurSynchronizationReader implements ItemReader<UserRepresentation> {
 
     private final KeycloakAdmin keycloakAdmin;
 
@@ -29,6 +29,6 @@ public class UsersSynchronizationReader implements ItemReader<UserRepresentation
 
     private LinkedList<UserRepresentation> recupererUtilisateurs() {
 
-        return new LinkedList<>(keycloakAdmin.getUsers());
+        return new LinkedList<>(keycloakAdmin.getUtilisateurs());
     }
 }

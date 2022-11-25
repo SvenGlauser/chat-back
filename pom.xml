@@ -13,7 +13,7 @@
         <module>chat-infrastructure</module>
         <module>chat-application</module>
         <module>chat-security</module>
-        <module>chat-users-synchronization</module>
+        <module>chat-synchronisation-utilisateurs</module>
     </modules>
 
     <properties>
@@ -40,7 +40,7 @@
         <dependencies>
             <dependency>
                 <groupId>ch.sven</groupId>
-                <artifactId>chat-users-synchronization</artifactId>
+                <artifactId>chat-synchronisation-utilisateurs</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

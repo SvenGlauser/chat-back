@@ -1,4 +1,4 @@
-package ch.sven.chat.userssynchronization.utilities;
+package ch.sven.chat.synchronisationutilisateur.utilities;
 
 import ch.sven.chat.domain.utilisateur.model.Theme;
 import ch.sven.chat.domain.utilisateur.model.Utilisateur;

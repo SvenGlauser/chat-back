@@ -3,7 +3,7 @@ package ch.sven.chat.application.utilisateur.service;
 import ch.sven.chat.application.utilisateur.dto.UtilisateurDto;
 import ch.sven.chat.domain.utilisateur.service.UtilisateurService;
 import ch.sven.chat.domain.validation.Validation;
-import ch.sven.chat.userssynchronization.utilisateur.UtilisateurSynchronisationService;
+import ch.sven.chat.synchronisationutilisateur.utilisateur.UtilisateurSynchronisationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Service;

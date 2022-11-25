@@ -1,9 +1,8 @@
-package ch.sven.chat.userssynchronization.batch;
+package ch.sven.chat.synchronisationutilisateur.batch;
 
 import ch.sven.chat.domain.utilisateur.model.Theme;
 import ch.sven.chat.domain.utilisateur.model.Utilisateur;
 import ch.sven.chat.domain.utilisateur.repository.UtilisateurRepositoy;
-import ch.sven.chat.infrastructure.hibernate.utilisateur.UtilisateurRepositoryHibernate;
 import ch.sven.chat.infrastructure.utilisateur.entity.UtilisateurEntity;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.representations.idm.UserRepresentation;
@@ -11,11 +10,10 @@ import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class UsersSynchronizationProcessor implements ItemProcessor<UserRepresentation, UtilisateurEntity> {
+public class UtilisateurSynchronizationProcessor implements ItemProcessor<UserRepresentation, UtilisateurEntity> {
     private final UtilisateurRepositoy utilisateurRepositoy;
 
     @Override

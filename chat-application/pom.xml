@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>ch.sven</groupId>
-            <artifactId>chat-users-synchronization</artifactId>
+            <artifactId>chat-synchronisation-utilisateurs</artifactId>
         </dependency>
         <dependency>
             <groupId>ch.sven</groupId>

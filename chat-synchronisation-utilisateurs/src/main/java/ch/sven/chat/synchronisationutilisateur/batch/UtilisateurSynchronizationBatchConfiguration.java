@@ -1,4 +1,4 @@
-package ch.sven.chat.userssynchronization.batch;
+package ch.sven.chat.synchronisationutilisateur.batch;
 
 import ch.sven.chat.infrastructure.utilisateur.entity.UtilisateurEntity;
 import lombok.RequiredArgsConstructor;
@@ -22,14 +22,14 @@ import java.util.Date;
 @EnableScheduling
 @EnableBatchProcessing
 @RequiredArgsConstructor
-public class UsersSynchronizationBatchConfiguration {
+public class UtilisateurSynchronizationBatchConfiguration {
 
     private final JobLauncher jobLauncher;
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
-    private final UsersSynchronizationReader usersSynchronizationReader;
-    private final UsersSynchronizationProcessor usersSynchronizationProcessor;
-    private final UsersSynchronizationWriter usersSynchronizationWriter;
+    private final UtilisateurSynchronizationReader utilisateurSynchronizationReader;
+    private final UtilisateurSynchronizationProcessor utilisateurSynchronizationProcessor;
+    private final UtilisateurSynchronizationWriter utilisateurSynchronizationWriter;
 
     @Scheduled(cron="0 * * * * *")
     public void startBatchJob() throws Exception {
@@ -50,9 +50,9 @@ public class UsersSynchronizationBatchConfiguration {
     public Step usersSynchronizationStep() {
         return this.stepBuilderFactory.get("usersSynchronizationStep")
                 .<UserRepresentation, UtilisateurEntity>chunk(3)
-                .reader(usersSynchronizationReader)
-                .processor(usersSynchronizationProcessor)
-                .writer(usersSynchronizationWriter)
+                .reader(utilisateurSynchronizationReader)
+                .processor(utilisateurSynchronizationProcessor)
+                .writer(utilisateurSynchronizationWriter)
                 .build();
     }
 }

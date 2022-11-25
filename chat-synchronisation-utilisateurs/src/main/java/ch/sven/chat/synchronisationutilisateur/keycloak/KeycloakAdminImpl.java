@@ -1,11 +1,10 @@
-package ch.sven.chat.userssynchronization.keycloak;
+package ch.sven.chat.synchronisationutilisateur.keycloak;
 
 import org.jboss.resteasy.client.jaxrs.internal.ResteasyClientBuilderImpl;
 import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.keycloak.admin.client.resource.RealmResource;
-import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -35,12 +34,12 @@ public class KeycloakAdminImpl implements KeycloakAdmin {
     private Keycloak keycloak;
 
     @Override
-    public List<UserRepresentation> getUsers() {
+    public List<UserRepresentation> getUtilisateurs() {
         return getRealm().users().list();
     }
 
     @Override
-    public UserRepresentation getUser(String id) {
+    public UserRepresentation getUtilisateur(String id) {
         return getRealm().users().get(id).toRepresentation();
     }
 

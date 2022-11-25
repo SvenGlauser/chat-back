@@ -1,6 +1,5 @@
-package ch.sven.chat.userssynchronization.keycloak;
+package ch.sven.chat.synchronisationutilisateur.keycloak;
 
-import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.representations.idm.UserRepresentation;
 
 import java.util.List;
@@ -11,12 +10,12 @@ public interface KeycloakAdmin {
      * Récupérer la liste des utilisateur Keycloak
      * @return Une liste de représentation d'utilisateur
      */
-    List<UserRepresentation> getUsers();
+    List<UserRepresentation> getUtilisateurs();
 
     /**
      * Récupérer un utilisateur Keycloak
      * @param id Id de l'utilisateur
      * @return L'utilisateur
      */
-    UserRepresentation getUser(String id);
+    UserRepresentation getUtilisateur(String id);
 }

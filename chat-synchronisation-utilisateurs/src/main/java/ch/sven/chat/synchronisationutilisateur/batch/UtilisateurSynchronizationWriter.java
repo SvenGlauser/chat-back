@@ -1,4 +1,4 @@
-package ch.sven.chat.userssynchronization.batch;
+package ch.sven.chat.synchronisationutilisateur.batch;
 
 import ch.sven.chat.infrastructure.hibernate.utilisateur.UtilisateurRepositoryHibernate;
 import ch.sven.chat.infrastructure.utilisateur.entity.UtilisateurEntity;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class UsersSynchronizationWriter implements ItemWriter<UtilisateurEntity> {
+public class UtilisateurSynchronizationWriter implements ItemWriter<UtilisateurEntity> {
     private final UtilisateurRepositoryHibernate utilisateurRepositoy;
 
     @Override

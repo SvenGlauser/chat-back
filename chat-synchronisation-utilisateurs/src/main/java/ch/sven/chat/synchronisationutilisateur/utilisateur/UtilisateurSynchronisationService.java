@@ -1,4 +1,4 @@
-package ch.sven.chat.userssynchronization.utilisateur;
+package ch.sven.chat.synchronisationutilisateur.utilisateur;
 
 /**
  * Service permettant la synchronisation manuelle des utilisateurs

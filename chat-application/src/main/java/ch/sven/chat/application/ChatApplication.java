@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         "ch.sven.chat.application",
         "ch.sven.chat.infrastructure",
         "ch.sven.chat.security",
-        "ch.sven.chat.userssynchronization",
+        "ch.sven.chat.synchronisationutilisateur",
 })
 @EnableJpaRepositories(basePackages = "ch.sven.chat.infrastructure.hibernate")
 @EntityScan(basePackages = "ch.sven.chat.infrastructure")
