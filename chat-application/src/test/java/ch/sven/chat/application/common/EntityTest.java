@@ -23,6 +23,7 @@ class EntityTest {
         utilisateur.setKeycloakId(UUID.randomUUID().toString());
         utilisateur.setNom("Nom");
         utilisateur.setPrenom("Prénom");
+        utilisateur.setEmail("test@test.ch");
         utilisateur.setTheme(Theme.SOMBRE);
         utilisateur.setImageUrl("https://google.com");
 
