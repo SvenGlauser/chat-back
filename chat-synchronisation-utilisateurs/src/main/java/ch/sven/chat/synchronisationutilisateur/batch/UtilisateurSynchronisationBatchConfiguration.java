@@ -1,6 +1,6 @@
 package ch.sven.chat.synchronisationutilisateur.batch;
 
-import ch.sven.chat.infrastructure.utilisateur.entity.UtilisateurEntity;
+import ch.sven.chat.domain.utilisateur.model.Utilisateur;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.batch.core.*;
@@ -13,9 +13,11 @@ import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteExcep
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import javax.persistence.EntityManagerFactory;
 import java.util.Date;
 
 @Configuration
@@ -24,6 +26,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class UtilisateurSynchronisationBatchConfiguration {
 
+    private final EntityManagerFactory entityManagerFactory;
     private final JobLauncher jobLauncher;
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
@@ -49,10 +52,16 @@ public class UtilisateurSynchronisationBatchConfiguration {
     @Bean
     public Step synchronisationUtilisateurStep() {
         return this.stepBuilderFactory.get("synchronisationUtilisateurStep")
-                .<UserRepresentation, UtilisateurEntity>chunk(3)
+                .<UserRepresentation, Utilisateur>chunk(1)
                 .reader(utilisateurSynchronisationReader)
                 .processor(utilisateurSynchronisationProcessor)
                 .writer(utilisateurSynchronisationWriter)
+                .allowStartIfComplete(true)
+                .transactionManager(getTransactionManager())
                 .build();
+    }
+
+    private JpaTransactionManager getTransactionManager() {
+        return new JpaTransactionManager(entityManagerFactory);
     }
 }

@@ -2,7 +2,6 @@ package ch.sven.chat.synchronisationutilisateur.batch;
 
 import ch.sven.chat.domain.utilisateur.model.Utilisateur;
 import ch.sven.chat.domain.utilisateur.repository.UtilisateurRepository;
-import ch.sven.chat.infrastructure.utilisateur.entity.UtilisateurEntity;
 import ch.sven.chat.synchronisationutilisateur.utilities.UtilisateurUtils;
 import lombok.RequiredArgsConstructor;
 import org.keycloak.representations.idm.UserRepresentation;
@@ -11,14 +10,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UtilisateurSynchronisationProcessor implements ItemProcessor<UserRepresentation, UtilisateurEntity> {
+public class UtilisateurSynchronisationProcessor implements ItemProcessor<UserRepresentation, Utilisateur> {
     private final UtilisateurRepository utilisateurRepository;
 
     @Override
-    public UtilisateurEntity process(UserRepresentation userRepresentation) {
+    public Utilisateur process(UserRepresentation userRepresentation) {
         Utilisateur utilisateur = utilisateurRepository.lireIdKeycloak(userRepresentation.getId());
-        UtilisateurUtils.synchroniser(utilisateur, userRepresentation);
+        utilisateur = UtilisateurUtils.synchroniser(utilisateur, userRepresentation);
         utilisateur.valider();
-        return new UtilisateurEntity(utilisateur);
+        return utilisateur;
     }
 }

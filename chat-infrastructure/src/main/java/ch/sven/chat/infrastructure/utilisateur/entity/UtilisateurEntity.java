@@ -18,13 +18,13 @@ public class UtilisateurEntity extends Dao<Utilisateur> {
     @Column(name = "ID_KEYCLOAK", updatable = false)
     private String keycloakId;
 
-    @Column(name = "NOM", updatable = false)
+    @Column(name = "NOM", nullable = false)
     private String nom;
 
-    @Column(name = "PRENOM", updatable = false)
+    @Column(name = "PRENOM", nullable = false)
     private String prenom;
 
-    @Column(name = "EMAIL", updatable = false)
+    @Column(name = "EMAIL", nullable = false)
     private String email;
 
     @Column(name = "IMAGE_URL", nullable = false)
