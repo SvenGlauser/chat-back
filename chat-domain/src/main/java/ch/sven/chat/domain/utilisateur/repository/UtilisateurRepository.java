@@ -2,7 +2,7 @@ package ch.sven.chat.domain.utilisateur.repository;
 
 import ch.sven.chat.domain.utilisateur.model.Utilisateur;
 
-public interface UtilisateurRepositoy {
+public interface UtilisateurRepository {
 
     /**
      * Lire un utilisateur
@@ -12,11 +12,11 @@ public interface UtilisateurRepositoy {
     Utilisateur lire(Long id);
 
     /**
-     * Créer un nouvel utilisateur
-     * @param utilisateur Utilisateur à créer
-     * @return Utilisateur créé
+     * Lire un utilisateur
+     * @param idKeycloak Id keycloak de l'utilisateur
+     * @return L'utilisateur
      */
-    Utilisateur creer(Utilisateur utilisateur);
+    Utilisateur lireIdKeycloak(String idKeycloak);
 
     /**
      * Modifier un utilisateur
@@ -24,4 +24,11 @@ public interface UtilisateurRepositoy {
      * @return Utilisateur modifié
      */
     Utilisateur modifier(Utilisateur utilisateur);
+
+    /**
+     * Créer un utilisateur
+     * @param utilisateur Utilisateur à créer
+     * @return Utilisateur créé
+     */
+    Utilisateur creer(Utilisateur utilisateur);
 }

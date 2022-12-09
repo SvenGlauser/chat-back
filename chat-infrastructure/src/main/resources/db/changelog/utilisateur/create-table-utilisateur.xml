@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+    <changeSet id="create-table-utilisateur" author="Sven Glauser">
+        <createTable tableName="UTILISATEUR" schemaName="CHAT">
+            <column name="ID" type="BIGINT" autoIncrement="true"/>
+            <column name="ID_KEYCLOAK" type="VARCHAR(255)"/>
+            <column name="CREATION" type="TIMESTAMP"/>
+            <column name="MODIFICATION" type="TIMESTAMP"/>
+            <column name="NOM" type="VARCHAR(255)"/>
+            <column name="PRENOM" type="VARCHAR(255)"/>
+            <column name="EMAIL" type="VARCHAR(255)"/>
+            <column name="IMAGE_URL" type="VARCHAR(255)"/>
+            <column name="THEME" type="VARCHAR(255)"/>
+        </createTable>
+
+        <addNotNullConstraint tableName="UTILISATEUR"
+                              schemaName="CHAT"
+                              columnName="ID"
+                              constraintName="UTILISATEUR_NN_ID"/>
+
+        <addPrimaryKey tableName="UTILISATEUR"
+                       schemaName="CHAT"
+                       columnNames="ID"
+                       constraintName="UTILISATEUR_PK_ID"/>
+
+        <addNotNullConstraint tableName="UTILISATEUR"
+                              schemaName="CHAT"
+                              columnName="ID_KEYCLOAK"
+                              constraintName="UTILISATEUR_NN_ID_KEYCLOAK"/>
+
+        <addUniqueConstraint tableName="UTILISATEUR"
+                             schemaName="CHAT"
+                             columnNames="ID_KEYCLOAK"
+                             constraintName="UTILISATEUR_UN_ID_KEYCLOAK"/>
+
+        <addNotNullConstraint tableName="UTILISATEUR"
+                              schemaName="CHAT"
+                              columnName="CREATION"
+                              constraintName="UTILISATEUR_NN_CREATION"/>
+
+        <addNotNullConstraint tableName="UTILISATEUR"
+                              schemaName="CHAT"
+                              columnName="MODIFICATION"
+                              constraintName="UTILISATEUR_NN_MODIFICATION"/>
+
+        <addNotNullConstraint tableName="UTILISATEUR"
+                              schemaName="CHAT"
+                              columnName="NOM"
+                              constraintName="UTILISATEUR_NN_NOM"/>
+
+        <addNotNullConstraint tableName="UTILISATEUR"
+                              schemaName="CHAT"
+                              columnName="PRENOM"
+                              constraintName="UTILISATEUR_NN_PRENOM"/>
+
+        <addNotNullConstraint tableName="UTILISATEUR"
+                              schemaName="CHAT"
+                              columnName="IMAGE_URL"
+                              constraintName="UTILISATEUR_NN_IMAGE_URL"/>
+
+        <addNotNullConstraint tableName="UTILISATEUR"
+                              schemaName="CHAT"
+                              columnName="THEME"
+                              constraintName="UTILISATEUR_NN_THEME"/>
+    </changeSet>
+</databaseChangeLog>

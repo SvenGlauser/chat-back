@@ -6,5 +6,7 @@
                             http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
     <include file="schema.sql"/>
+    <include file="db/changelog/utilisateur/create-table-utilisateur.xml"/>
+    <include file="db/changelog/message/create-table-message.xml"/>
 
 </databaseChangeLog>

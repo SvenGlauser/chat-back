@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  keycloak:
+    container_name: chat-keycloak
+    image: quay.io/keycloak/keycloak:20.0.1
+    ports:
+      - "8081:8081"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://chat-database:5432/chat
+      KC_DB_SCHEMA: keycloak
+      KC_DB_USERNAME: sa
+      KC_DB_PASSWORD: Passw0rd
+    depends_on:
+      - chat-database
+    volumes:
+      - ./imports:/opt/jboss/keycloak/imports
+    command:
+      - "start-dev"
+      - "-Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export.json"
+      - "--http-port=8081"
+  chat-database:
+    container_name: chat-database
+    image: postgres:15.0
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_DB: chat
+      POSTGRES_USER: sa
+      POSTGRES_PASSWORD: Passw0rd

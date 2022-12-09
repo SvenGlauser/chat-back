@@ -5,13 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ch.sven</groupId>
-    <artifactId>chat</artifactId>
+    <artifactId>chat-parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>chat-domain</module>
         <module>chat-infrastructure</module>
         <module>chat-application</module>
+        <module>chat-security</module>
+        <module>chat-synchronisation-utilisateurs</module>
     </modules>
 
     <properties>
@@ -26,14 +28,26 @@
         <mockito.version>4.8.1</mockito.version>
         <mockito-junit.version>4.5.1</mockito-junit.version>
         <junit.version>5.8.2</junit.version>
-        <h2.version>2.1.214</h2.version>
+        <postgresql.version>42.3.3</postgresql.version>
         <liquibase.version>4.17.1</liquibase.version>
+        <springdoc-openapi-ui.version>1.6.12</springdoc-openapi-ui.version>
+        <keycloak.version>20.0.1</keycloak.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>ch.sven</groupId>
+                <artifactId>chat-synchronisation-utilisateurs</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.sven</groupId>
+                <artifactId>chat-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>ch.sven</groupId>
                 <artifactId>chat-domain</artifactId>
@@ -50,6 +64,18 @@
                 <version>${spring.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak.bom</groupId>
+                <artifactId>keycloak-adapter-bom</artifactId>
+                <version>${keycloak.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-admin-client</artifactId>
+                <version>${keycloak.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -86,15 +112,20 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>${h2.version}</version>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-core</artifactId>
                 <version>${liquibase.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc-openapi-ui.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

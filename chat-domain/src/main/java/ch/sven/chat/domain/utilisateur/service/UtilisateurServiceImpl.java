@@ -1,26 +1,25 @@
 package ch.sven.chat.domain.utilisateur.service;
 
-import ch.sven.chat.domain.common.Model;
 import ch.sven.chat.domain.exception.CoherenceException;
 import ch.sven.chat.domain.utilisateur.model.Utilisateur;
-import ch.sven.chat.domain.utilisateur.repository.UtilisateurRepositoy;
+import ch.sven.chat.domain.utilisateur.repository.UtilisateurRepository;
 import ch.sven.chat.domain.validation.Validation;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class UtilisateurServiceImpl implements UtilisateurService {
     public static final String ERROR_ID_OBLIGATOIRE = "L'id du utilisateur est obligatoire";
     public static final String ERROR_UTILISATEUR_OBLIGATOIRE = "Le utilisateur est obligatoire";
     public static final String ERROR_UTILISATEUR_NON_TROUVE = "Le utilisateur à modifier n'a pas été trouvé";
-    public static final String ERROR_ID_DOIT_ETRE_NULL = "L'id de l'utilisateur doit être null";
+    public static final String ERROR_ID_KEYCLOAK_OBLIGATOIRE = "L'id de Keycloak est obligatoire";
 
     private static final String FIELD_ID = "id";
     private static final String FIELD_UTILISATEUR = "utilisateur";
+    private static final String FIELD_ID_KEYCLOAK = "idKeylcoak";
 
-    private final UtilisateurRepositoy utilisateurRepositoy;
+    private final UtilisateurRepository utilisateurRepository;
 
     @Override
     public Utilisateur lire(Long id) {
@@ -28,19 +27,16 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                 .notNull(id, FIELD_ID, ERROR_ID_OBLIGATOIRE)
                 .validate();
 
-        return utilisateurRepositoy.lire(id);
+        return utilisateurRepository.lire(id);
     }
 
     @Override
-    public Utilisateur creer(Utilisateur utilisateur) {
+    public Utilisateur lireIdKeycloak(String idKeycloak) {
         Validation.of(this.getClass())
-                .notNull(utilisateur, FIELD_UTILISATEUR, ERROR_UTILISATEUR_OBLIGATOIRE)
-                .isNull(Optional.ofNullable(utilisateur).map(Model::getId).orElse(null), FIELD_ID, ERROR_ID_DOIT_ETRE_NULL)
+                .notNull(idKeycloak, FIELD_ID_KEYCLOAK, ERROR_ID_KEYCLOAK_OBLIGATOIRE)
                 .validate();
 
-        utilisateur.valider();
-
-        return utilisateurRepositoy.creer(utilisateur);
+        return utilisateurRepository.lireIdKeycloak(idKeycloak);
     }
 
     @Override
@@ -49,13 +45,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                 .notNull(utilisateur, FIELD_UTILISATEUR, ERROR_UTILISATEUR_OBLIGATOIRE)
                 .validate();
 
-        Utilisateur oldUtilisateur = utilisateurRepositoy.lire(utilisateur.getId());
+        Utilisateur oldUtilisateur = utilisateurRepository.lire(utilisateur.getId());
         if (Objects.isNull(oldUtilisateur)) {
             throw new CoherenceException(this.getClass().getSimpleName(), ERROR_UTILISATEUR_NON_TROUVE);
         }
 
         oldUtilisateur.modifyFields(utilisateur).valider();
 
-        return utilisateurRepositoy.modifier(oldUtilisateur);
+        return utilisateurRepository.modifier(oldUtilisateur);
     }
 }

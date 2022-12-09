@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class MessageEntityTest {
 
     @Test
-    void messageDto() {
+    void messageEntity() {
         Message message = new Message();
         message.setId(1L);
         message.setContenu("Le contenu de test");

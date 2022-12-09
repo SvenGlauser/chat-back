@@ -11,7 +11,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaAuditing
 @ComponentScan(basePackages = {
         "ch.sven.chat.application",
-        "ch.sven.chat.infrastructure"
+        "ch.sven.chat.infrastructure",
+        "ch.sven.chat.security",
+        "ch.sven.chat.synchronisationutilisateur",
 })
 @EnableJpaRepositories(basePackages = "ch.sven.chat.infrastructure.hibernate")
 @EntityScan(basePackages = "ch.sven.chat.infrastructure")

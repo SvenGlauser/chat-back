@@ -18,14 +18,8 @@ public class ExceptionTestUtils {
                         ((CoherenceException) exception)
                                 .getErrors()
                                 .stream()
-                                .map(ErrorField::getMessage)
+                                .map(ErrorField::message)
                                 .collect(Collectors.toList()), ITERABLE
                 ).containsOnly(errors);
-    }
-
-    public static void assertCoherenceThrownError(ThrowableAssert.ThrowingCallable throwingCallable, String error) {
-        assertThatThrownBy(throwingCallable)
-                .isInstanceOf(CoherenceException.class)
-                .extracting(Throwable::getMessage).isEqualTo(error);
     }
 }

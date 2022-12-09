@@ -1,7 +1,7 @@
 package ch.sven.chat.infrastructure.utilisateur.repository;
 
 import ch.sven.chat.domain.utilisateur.model.Utilisateur;
-import ch.sven.chat.domain.utilisateur.repository.UtilisateurRepositoy;
+import ch.sven.chat.domain.utilisateur.repository.UtilisateurRepository;
 import ch.sven.chat.infrastructure.common.Dao;
 import ch.sven.chat.infrastructure.hibernate.utilisateur.UtilisateurRepositoryHibernate;
 import ch.sven.chat.infrastructure.utilisateur.entity.UtilisateurEntity;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
-public class UtilisateurRepositoryImpl implements UtilisateurRepositoy {
+public class UtilisateurRepositoryImpl implements UtilisateurRepository {
     private final UtilisateurRepositoryHibernate utilisateurRepositoryHibernate;
 
     @Override
@@ -21,12 +21,17 @@ public class UtilisateurRepositoryImpl implements UtilisateurRepositoy {
     }
 
     @Override
-    public Utilisateur creer(Utilisateur utilisateur) {
-        return Optional.of(utilisateurRepositoryHibernate.save(new UtilisateurEntity(utilisateur))).map(Dao::toDomain).orElse(null);
+    public Utilisateur lireIdKeycloak(String idKeycloak) {
+        return utilisateurRepositoryHibernate.findByKeycloakId(idKeycloak).map(Dao::toDomain).orElse(null);
     }
 
     @Override
     public Utilisateur modifier(Utilisateur utilisateur) {
+        return Optional.of(utilisateurRepositoryHibernate.save(new UtilisateurEntity(utilisateur))).map(Dao::toDomain).orElse(null);
+    }
+
+    @Override
+    public Utilisateur creer(Utilisateur utilisateur) {
         return Optional.of(utilisateurRepositoryHibernate.save(new UtilisateurEntity(utilisateur))).map(Dao::toDomain).orElse(null);
     }
 }

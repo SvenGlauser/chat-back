@@ -92,7 +92,7 @@ class MessageServiceImplTest {
         ExceptionTestUtils.assertCoherenceThrownErrorList(() -> messageService.modifier(null), MessageServiceImpl.ERROR_MESSAGE_OBLIGATOIRE);
 
         Mockito.when(messageRepository.lire(Mockito.anyLong())).thenReturn(null);
-        ExceptionTestUtils.assertCoherenceThrownError(() -> messageService.modifier(message), MessageServiceImpl.ERROR_MESSAGE_NON_TROUVE);
+        ExceptionTestUtils.assertCoherenceThrownErrorList(() -> messageService.modifier(message), MessageServiceImpl.ERROR_MESSAGE_NON_TROUVE);
     }
 
     @Test

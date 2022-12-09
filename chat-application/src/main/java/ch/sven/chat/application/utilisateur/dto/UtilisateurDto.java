@@ -13,8 +13,10 @@ import java.util.Optional;
 @Setter
 @NoArgsConstructor
 public class UtilisateurDto extends Dto<Utilisateur> {
+    private String keycloakId;
     private String nom;
     private String prenom;
+    private String email;
     private String imageUrl;
     private String theme;
 
@@ -24,8 +26,10 @@ public class UtilisateurDto extends Dto<Utilisateur> {
      */
     public UtilisateurDto(Utilisateur utilisateur) {
         super(utilisateur);
+        keycloakId = utilisateur.getKeycloakId();
         nom = utilisateur.getNom();
         prenom = utilisateur.getPrenom();
+        email = utilisateur.getEmail();
         imageUrl = utilisateur.getImageUrl();
         theme = Optional.ofNullable(utilisateur.getTheme()).map(Enum::name).orElse(null);
     }
@@ -33,8 +37,10 @@ public class UtilisateurDto extends Dto<Utilisateur> {
     @Override
     protected Utilisateur toDomainEntity() {
         Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setKeycloakId(keycloakId);
         utilisateur.setNom(nom);
         utilisateur.setPrenom(prenom);
+        utilisateur.setEmail(email);
         utilisateur.setImageUrl(imageUrl);
         utilisateur.setTheme(Optional.ofNullable(theme).map(Theme::valueOf).orElse(null));
         return utilisateur;

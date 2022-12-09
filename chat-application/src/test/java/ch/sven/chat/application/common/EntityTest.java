@@ -1,20 +1,18 @@
 package ch.sven.chat.application.common;
 
 import ch.sven.chat.domain.utilisateur.model.Theme;
-import ch.sven.chat.infrastructure.hibernate.message.MessageRepositoryHibernate;
 import ch.sven.chat.infrastructure.hibernate.utilisateur.UtilisateurRepositoryHibernate;
-import ch.sven.chat.infrastructure.message.entity.MessageEntity;
 import ch.sven.chat.infrastructure.utilisateur.entity.UtilisateurEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class EntityTest {
+class EntityTest {
 
     @Autowired
     UtilisateurRepositoryHibernate utilisateurRepositoryHibernate;
@@ -22,31 +20,23 @@ public class EntityTest {
     @Test
     void localDateTimeGeneration() {
         UtilisateurEntity utilisateur = new UtilisateurEntity();
+        utilisateur.setKeycloakId(UUID.randomUUID().toString());
         utilisateur.setNom("Nom");
         utilisateur.setPrenom("Prénom");
+        utilisateur.setEmail("test@test.ch");
         utilisateur.setTheme(Theme.SOMBRE);
         utilisateur.setImageUrl("https://google.com");
 
-        LocalDateTime before = LocalDateTime.now();
-
         utilisateur = utilisateurRepositoryHibernate.save(utilisateur);
 
-        LocalDateTime after = LocalDateTime.now();
-
         assertThat(utilisateur).isNotNull();
-        assertThat(utilisateur.getCreation()).isAfterOrEqualTo(before);
-        assertThat(utilisateur.getCreation()).isBeforeOrEqualTo(after);
+        assertThat(utilisateur.getCreation()).isNotNull();
 
         utilisateur.setNom("Nouveau nom");
 
-        before = LocalDateTime.now();
-
         utilisateur = utilisateurRepositoryHibernate.save(utilisateur);
 
-        after = LocalDateTime.now();
-
         assertThat(utilisateur).isNotNull();
-        assertThat(utilisateur.getModification()).isAfterOrEqualTo(before);
-        assertThat(utilisateur.getModification()).isBeforeOrEqualTo(after);
+        assertThat(utilisateur.getModification()).isNotNull();
     }
 }

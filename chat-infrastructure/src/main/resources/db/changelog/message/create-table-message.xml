@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+
+    <changeSet id="create-table-message" author="Sven Glauser">
+        <createTable tableName="MESSAGE" schemaName="CHAT">
+            <column name="ID" type="BIGINT" autoIncrement="true"/>
+            <column name="CREATION" type="TIMESTAMP"/>
+            <column name="MODIFICATION" type="TIMESTAMP"/>
+            <column name="CONTENU" type="VARCHAR(255)"/>
+            <column name="ID_DESTINATAIRE" type="BIGINT"/>
+            <column name="ID_EMETTEUR" type="BIGINT"/>
+        </createTable>
+
+        <addPrimaryKey tableName="MESSAGE"
+                       schemaName="CHAT"
+                       columnNames="ID"
+                       constraintName="MESSAGE_PK_ID"/>
+
+        <addNotNullConstraint tableName="MESSAGE"
+                              schemaName="CHAT"
+                              columnName="CREATION"
+                              constraintName="MESSAGE_NN_CREATION"/>
+
+        <addNotNullConstraint tableName="MESSAGE"
+                              schemaName="CHAT"
+                              columnName="MODIFICATION"
+                              constraintName="MESSAGE_NN_MODIFICATION"/>
+
+        <addNotNullConstraint tableName="MESSAGE"
+                              schemaName="CHAT"
+                              columnName="CONTENU"
+                              constraintName="MESSAGE_NN_CONTENU"/>
+
+        <addNotNullConstraint tableName="MESSAGE"
+                              schemaName="CHAT"
+                              columnName="ID_DESTINATAIRE"
+                              constraintName="MESSAGE_NN_ID_DESTINATAIRE"/>
+
+        <addNotNullConstraint tableName="MESSAGE"
+                              schemaName="CHAT"
+                              columnName="ID_EMETTEUR"
+                              constraintName="MESSAGE_NN_ID_EMETTEUR"/>
+
+        <addForeignKeyConstraint baseTableName="MESSAGE"
+                                 baseTableSchemaName="CHAT"
+                                 baseColumnNames="ID_DESTINATAIRE"
+                                 referencedTableName="UTILISATEUR"
+                                 referencedTableSchemaName="CHAT"
+                                 referencedColumnNames="ID"
+                                 constraintName="MESSAGE_FK_ID_DESTINATAIRE_UTILISATEUR"/>
+
+        <addForeignKeyConstraint baseTableName="MESSAGE"
+                                 baseTableSchemaName="CHAT"
+                                 baseColumnNames="ID_EMETTEUR"
+                                 referencedTableName="UTILISATEUR"
+                                 referencedTableSchemaName="CHAT"
+                                 referencedColumnNames="ID"
+                                 constraintName="MESSAGE_FK_ID_EMETTEUR_UTILISATEUR"/>
+    </changeSet>
+</databaseChangeLog>

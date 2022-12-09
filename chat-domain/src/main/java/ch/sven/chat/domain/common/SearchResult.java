@@ -23,7 +23,7 @@ public class SearchResult<T> {
      */
     public static <T> SearchResult<T> of(List<T> elements) {
         SearchResult<T> searchResult = new SearchResult<>();
-        searchResult.setIndex(1);
+        searchResult.setIndex(0);
         searchResult.setElements(elements);
         searchResult.setNombrePages(1);
         searchResult.setNombreElementsPage(elements.size());

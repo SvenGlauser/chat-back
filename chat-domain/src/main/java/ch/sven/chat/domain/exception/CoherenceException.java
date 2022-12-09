@@ -10,18 +10,12 @@ import java.util.List;
 @Getter
 public class CoherenceException extends RuntimeException {
     private final List<ErrorField> errors;
-    private final String clazz;
-    private final String message;
 
     public CoherenceException(String clazz, String message) {
-        this.clazz = clazz;
-        this.message = message;
-        this.errors = null;
+        this.errors = List.of(new ErrorField(clazz, null, message));
     }
 
     public CoherenceException(List<ErrorField> errors) {
         this.errors = errors;
-        this.clazz = null;
-        this.message = null;
     }
 }

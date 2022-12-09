@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SearchUtils {
@@ -28,7 +27,7 @@ public class SearchUtils {
         result.setNombrePages(searchResult.getNombrePages());
         result.setNombreElementsPage(searchResult.getNombreElementsPage());
         result.setTotalElements(searchResult.getTotalElements());
-        result.setElements(searchResult.getElements().stream().map(transformation).collect(Collectors.toList()));
+        result.setElements(searchResult.getElements().stream().map(transformation).toList());
         return result;
     }
 

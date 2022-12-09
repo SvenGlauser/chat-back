@@ -15,11 +15,11 @@ public interface UtilisateurApplicationService {
     UtilisateurDto lire(Long id);
 
     /**
-     * Créer un nouvel utilisateur
-     * @param utilisateur Utilisateur à créer
-     * @return Utilisateur créé
+     * Lire un utilisateur
+     * @param idKeycloak Id Keycloak de l'utiliateur
+     * @return L'utilisateur
      */
-    UtilisateurDto creer(UtilisateurDto utilisateur);
+    UtilisateurDto lireIdKeycloak(String idKeycloak);
 
     /**
      * Modifier un utilisateur
@@ -27,4 +27,11 @@ public interface UtilisateurApplicationService {
      * @return Utilisateur modifié
      */
     UtilisateurDto modifier(UtilisateurDto utilisateur);
+
+    /**
+     * Synchroniser un utilisateur
+     * @param idKeycloak Id Keycloak de l'utilisateur à synchroniser
+     * @return True si la synchronisation s'est déroulée correctement
+     */
+    boolean synchroniser(String idKeycloak);
 }
