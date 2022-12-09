@@ -19,15 +19,15 @@ public class MessageController {
 
     private final MessageApplicationService messageApplicationService;
 
-    @GetMapping
-    public ResponseEntity<SearchResult<MessageDto>> rechercher(MessageSearchQuery searchQuery) {
-        return new ResponseEntity<>(messageApplicationService.rechercher(searchQuery), HttpStatus.OK);
-    }
-
     @GetMapping(path = "/{id}")
     public ResponseEntity<MessageDto> lire(@PathVariable("id") Long id) {
         MessageDto response = messageApplicationService.lire(id);
         return new ResponseEntity<>(response, Objects.nonNull(response) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping(path = "/search", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<SearchResult<MessageDto>> rechercher(@RequestBody MessageSearchQuery searchQuery) {
+        return new ResponseEntity<>(messageApplicationService.rechercher(searchQuery), HttpStatus.OK);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

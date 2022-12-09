@@ -13,10 +13,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     public static final String ERROR_ID_OBLIGATOIRE = "L'id du utilisateur est obligatoire";
     public static final String ERROR_UTILISATEUR_OBLIGATOIRE = "Le utilisateur est obligatoire";
     public static final String ERROR_UTILISATEUR_NON_TROUVE = "Le utilisateur à modifier n'a pas été trouvé";
-    public static final String ERROR_ID_DOIT_ETRE_NULL = "L'id de l'utilisateur doit être null";
+    public static final String ERROR_ID_KEYCLOAK_OBLIGATOIRE = "L'id de Keycloak est obligatoire";
 
     private static final String FIELD_ID = "id";
     private static final String FIELD_UTILISATEUR = "utilisateur";
+    private static final String FIELD_ID_KEYCLOAK = "idKeylcoak";
 
     private final UtilisateurRepository utilisateurRepository;
 
@@ -27,6 +28,15 @@ public class UtilisateurServiceImpl implements UtilisateurService {
                 .validate();
 
         return utilisateurRepository.lire(id);
+    }
+
+    @Override
+    public Utilisateur lireIdKeycloak(String idKeycloak) {
+        Validation.of(this.getClass())
+                .notNull(idKeycloak, FIELD_ID_KEYCLOAK, ERROR_ID_KEYCLOAK_OBLIGATOIRE)
+                .validate();
+
+        return utilisateurRepository.lireIdKeycloak(idKeycloak);
     }
 
     @Override

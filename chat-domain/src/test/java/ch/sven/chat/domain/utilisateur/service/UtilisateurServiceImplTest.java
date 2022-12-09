@@ -41,6 +41,23 @@ class UtilisateurServiceImplTest {
     }
 
     @Test
+    void lireIdKeycloak() {
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setId(1L);
+        utilisateur.setKeycloakId(UUID.randomUUID().toString());
+        utilisateur.setNom("Nom");
+
+        Mockito.when(utilisateurRepository.lireIdKeycloak(Mockito.anyString())).thenReturn(utilisateur);
+        Utilisateur result = utilisateurService.lireIdKeycloak(utilisateur.getKeycloakId());
+
+        assertThat(result).isNotNull();
+        assertThat(result.getId()).isEqualTo(1L);
+        assertThat(result.getNom()).isEqualTo("Nom");
+
+        ExceptionTestUtils.assertCoherenceThrownErrorList(() -> utilisateurService.lireIdKeycloak(null), UtilisateurServiceImpl.ERROR_ID_KEYCLOAK_OBLIGATOIRE);
+    }
+
+    @Test
     void modifier() {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setId(1L);

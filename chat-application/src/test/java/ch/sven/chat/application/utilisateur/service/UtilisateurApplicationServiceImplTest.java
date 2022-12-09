@@ -39,6 +39,21 @@ class UtilisateurApplicationServiceImplTest {
 
     @Test
     @WithMockUser(username = USER_TEST, authorities = {PermissionsConstantes.ROLE_UTILISATEUR})
+    void lireIdKeycloak() {
+        UtilisateurDto utilisateurDto = utilisateurGenerator.generateTestUser();
+
+        UtilisateurDto result = utilisateurApplicationService.lireIdKeycloak(utilisateurDto.getKeycloakId());
+        assertThat(result).isNotNull();
+        assertThat(result.getNom()).isEqualTo("user_test");
+
+        ExceptionTestUtils.assertCoherenceThrownErrorList(() -> utilisateurApplicationService.lireIdKeycloak(null), UtilisateurApplicationServiceImpl.ERROR_ID_KEYCLOAK_OBLIGATOIRE);
+
+        result = utilisateurApplicationService.lireIdKeycloak("");
+        assertThat(result).isNull();
+    }
+
+    @Test
+    @WithMockUser(username = USER_TEST, authorities = {PermissionsConstantes.ROLE_UTILISATEUR})
     void modifier() {
         UtilisateurDto utilisateur = utilisateurGenerator.generateTestUser();
         utilisateur.setNom("Nouveau nom");

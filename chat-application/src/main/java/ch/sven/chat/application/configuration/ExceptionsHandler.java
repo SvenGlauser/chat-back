@@ -13,6 +13,6 @@ import java.util.List;
 public class ExceptionsHandler {
     @ExceptionHandler(CoherenceException.class)
     public ResponseEntity<List<ErrorField>> coherenceException(CoherenceException coherenceException) {
-        return new ResponseEntity<>(coherenceException.getErrors(), HttpStatus.OK);
+        return new ResponseEntity<>(coherenceException.getErrors(), HttpStatus.NOT_ACCEPTABLE);
     }
 }

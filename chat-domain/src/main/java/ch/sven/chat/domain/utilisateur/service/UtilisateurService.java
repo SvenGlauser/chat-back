@@ -15,6 +15,13 @@ public interface UtilisateurService {
     Utilisateur lire(Long id);
 
     /**
+     * Lire un utilisateur
+     * @param idKeycloak Id Keycloak de l'utilisateur
+     * @return L'utilisateur
+     */
+    Utilisateur lireIdKeycloak(String idKeycloak);
+
+    /**
      * Modifier un utilisateur
      * @param utilisateur Utilisateur à modifier
      * @return Utilisateur modifié

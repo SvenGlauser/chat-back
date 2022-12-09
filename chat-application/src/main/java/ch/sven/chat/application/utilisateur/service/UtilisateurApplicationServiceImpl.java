@@ -36,6 +36,21 @@ public class UtilisateurApplicationServiceImpl implements UtilisateurApplication
         return Optional.ofNullable(utilisateurService.lire(id)).map(UtilisateurDto::new).orElse(null);
     }
 
+    /**
+     * Lire un utilisateur
+     *
+     * @param idKeycloak Id Keycloak de l'utiliateur
+     * @return L'utilisateur
+     */
+    @Override
+    public UtilisateurDto lireIdKeycloak(String idKeycloak) {
+        Validation.of(this.getClass())
+                .notNull(idKeycloak, FIELD_ID_KEYCLOAK, ERROR_ID_KEYCLOAK_OBLIGATOIRE)
+                .validate();
+
+        return Optional.ofNullable(utilisateurService.lireIdKeycloak(idKeycloak)).map(UtilisateurDto::new).orElse(null);
+    }
+
     @Override
     @Transactional
     @PostAuthorize("hasAuthority(@permissionsConstantes.ROLE_UTILISATEUR)")
